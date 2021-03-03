@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">GettingToKnowAndroidGeekBrainsJava</string>
+    <string name="text_input">Введите число</string>
+    <string name="text_result">Результат =</string>
+    <string name="text_div">/</string>
+    <string name="text_persent">%</string>
+    <string name="text_multi">*</string>
+    <string name="text_1_x">1/x</string>
+    <string name="text_sub">-</string>
+    <string name="text_equals">=</string>
+    <string name="text_0">0</string>
+    <string name="text_dot">.</string>
+    <string name="text_add">+</string>
+    <string name="input_first_number">Введите первое число</string>
+    <string name="input_second_number">Введите второе число</string>
+    <string name="btn_compare">Compare</string>
+    <string name="switch_text">SWITCH</string>
+    <string name="chekbox_text">ChekBox</string>
+    <string name="togglebutton_not_checked">ToggleButton Not Checked</string>
+    <string name="togglebutton_checked">ToggleButton Checked</string>
+    <string name="calendar">Calendar</string>
+    <string name="input_text">Введите техт:</string>
+    <string name="text_hint">text</string>
+    <string name="personname">Введите PersonName:</string>
+    <string name="name">name</string>
+    <string name="input_telefon">Введите номер телефона:</string>
+    <string name="phone">phone</string>
+    <string name="input_number">Введите номер :</string>
+    <string name="number">number</string>
+    <string name="input_password">Введите пароль:</string>
+    <string name="password">password</string>
+    <string name="email">Введите email:</string>
+    <string name="email_hint">email</string>
+    <string name="mainactivity2">MainActivity2</string>
+    <string name="android_1_java">Android 1. Знакомство с платформой. Язык Java</string>
+    <string name="homework_title">Домашние работы</string>
+    <string name="text_1">1</string>
+    <string name="text_2">2</string>
+    <string name="text_3">3</string>
+    <string name="text_4">4</string>
+    <string name="text_5">5</string>
+    <string name="text_6">6</string>
+    <string name="text_7">7</string>
+    <string name="text_8">8</string>
+    <string name="text_9">9</string>
+    <string name="text_10">10</string>
+    <string name="text_11">11</string>
 </resources>

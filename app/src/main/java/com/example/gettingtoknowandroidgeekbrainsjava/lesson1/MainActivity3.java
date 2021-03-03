@@ -1,7 +1,9 @@
-package com.example.gettingtoknowandroidgeekbrainsjava;
+package com.example.gettingtoknowandroidgeekbrainsjava.lesson1;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.gettingtoknowandroidgeekbrainsjava.R;
 
 public class MainActivity3 extends AppCompatActivity {
     @Override
