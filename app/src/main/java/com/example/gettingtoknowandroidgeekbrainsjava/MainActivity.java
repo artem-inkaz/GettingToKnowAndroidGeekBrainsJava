@@ -33,27 +33,27 @@ public class MainActivity extends AppCompatActivity {
 //        Button buttonLesson11 = findViewById(R.id.button_lesson_11);
 
         buttonLesson1.setOnClickListener(v -> {
-            try {
-                MainActivity1();
-            } catch (Exception e) {
-                Log.d("TAG", "Error Activity");
-            }
+//            try {
+                launchMainActivity1();
+//            } catch (Exception e) {
+//                Log.d("TAG", "Error Activity");
+//            }
         });
         buttonLesson2.setOnClickListener(v -> {
-            try {
-                MainActivity2();
-            } catch (Exception e) {
-                Log.d("TAG", "Error Activity");
-            }
+//            try {
+                launchCalculatorActivity();
+//            } catch (Exception e) {
+//                Log.d("TAG", "Error Activity");
+//            }
         });
     }
 
-    private void MainActivity1() {
+    private void launchMainActivity1() {
         Intent intent = new Intent(MainActivity.this, MainActivity1.class);
         startActivity(intent);
     }
 
-    private void MainActivity2() {
+    private void launchCalculatorActivity(){
         Intent intent = new Intent(MainActivity.this, CalculatorActivity.class);
         startActivity(intent);
     }
