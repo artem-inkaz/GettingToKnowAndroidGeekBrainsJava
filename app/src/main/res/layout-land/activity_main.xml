@@ -4,25 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_columnSpan="4"
-    android:gravity="center"
-    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:gravity="center_vertical|center_horizontal"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
         android:text="@string/android_1_java"
         android:textSize="40sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="@string/homework_title"
         android:textSize="30sp" />
@@ -30,13 +29,15 @@
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_gravity="top"
+        android:gravity="center_horizontal|center_vertical">
+
 
         <Button
             android:id="@+id/button_lesson_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:text="@string/text_1" />
 
         <Button
@@ -70,7 +71,7 @@
             android:id="@+id/button_lesson_5"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:enabled="false"
             android:text="@string/text_5" />
 
@@ -95,6 +96,7 @@
             android:enabled="false"
             android:text="@string/text_8" />
 
+
     </TableRow>
 
     <TableRow
@@ -106,7 +108,7 @@
             android:id="@+id/button_lesson_9"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:enabled="false"
             android:text="@string/text_9" />
 

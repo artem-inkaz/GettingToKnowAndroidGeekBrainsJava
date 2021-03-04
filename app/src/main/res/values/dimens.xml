@@ -2,4 +2,8 @@
 <resources>
     <dimen name="margin_main">10dp</dimen>
     <dimen name="margin_min">5dp</dimen>
+    <dimen name="dimen_height_width">60dp</dimen>
+    <dimen name="margin_start">16dp</dimen>
+    <dimen name="dimen_text_size_result">20sp</dimen>
+    <dimen name="dimen_text_result_field">30sp</dimen>
 </resources>

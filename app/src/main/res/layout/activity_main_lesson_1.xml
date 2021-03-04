@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:verticalScrollbarPosition="right"
+    android:visibility="visible"
+    tools:context=".lesson1.MainActivity1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:text="@string/input_text"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:hint="@string/text_hint"
+        android:inputType="text"
+        android:textSize="28sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:text="@string/personname"
+        android:textSize="15sp"
+        android:textStyle="normal" />
+
+    <EditText
+        android:id="@+id/text_person_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:layout_marginStart="16dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:text="@string/input_telefon"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/text_person_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:layout_marginStart="16dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:text="@string/input_number"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/text_person_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:layout_marginStart="16dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="@string/number"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:text="@string/input_password"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/text_person_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:layout_marginStart="16dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:text="@string/email"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/text_person_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_min"
+        android:layout_marginStart="16dp"
+        android:hint="@string/email_hint"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/button_activity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_main"
+        android:text="@string/mainactivity2" />
+
+</LinearLayout>

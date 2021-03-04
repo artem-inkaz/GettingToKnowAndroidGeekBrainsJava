@@ -1,99 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    android:orientation="vertical"
+    tools:context=".lesson1.MainActivity2">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Введите первое число"
-        android:padding="@dimen/margin_min"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/margin_main"
-        android:layout_gravity="center"/>
+        android:padding="@dimen/margin_min"
+        android:text="@string/input_first_number" />
 
     <EditText
         android:id="@+id/number_one_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_main"
-        android:layout_margin="@dimen/margin_main"/>
+        android:layout_margin="@dimen/margin_main"
+        android:inputType="number"
+        android:padding="@dimen/margin_main" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Введите второе число"
-        android:padding="@dimen/margin_min"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/margin_main"
-        android:layout_gravity="center"/>
+        android:padding="@dimen/margin_min"
+        android:text="@string/input_second_number" />
 
     <EditText
         android:id="@+id/number_two_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_main"
-        android:layout_margin="@dimen/margin_main"/>
+        android:layout_margin="@dimen/margin_main"
+        android:inputType="number"
+        android:padding="@dimen/margin_main" />
 
     <Button
         android:id="@+id/button_compare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/margin_main"
         android:layout_margin="@dimen/margin_main"
-        android:text="Compare"/>
+        android:padding="@dimen/margin_main"
+        android:text="@string/btn_compare" />
 
     <TextView
         android:id="@+id/result_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Hello World!"
-        android:padding="@dimen/margin_min"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/margin_main"
-        android:layout_gravity="center"/>
+        android:padding="@dimen/margin_min"
+        tools:text="Hello World!" />
 
     <Switch
         android:layout_width="168dp"
         android:layout_height="10dp"
         android:layout_margin="@dimen/margin_min"
-        android:text="SWITCH"
-        android:textSize="25sp"
         android:checked="true"
+        android:text="@string/switch_text"
+        android:textSize="25sp"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <CheckBox
         android:layout_width="172dp"
         android:layout_height="32dp"
         android:layout_margin="@dimen/margin_min"
-        android:text="ChekBox"
+        android:text="@string/chekbox_text"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_orange_light"/>
+        android:textColor="@android:color/holo_orange_light" />
+
     <CheckBox
         android:layout_width="172dp"
         android:layout_height="32dp"
         android:layout_margin="@dimen/margin_min"
-        android:text="ChekBox"
-        android:textAlignment="center"
         android:checked="true"
-        android:textColor="@android:color/holo_orange_light"/>
+        android:text="@string/chekbox_text"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_light" />
 
     <ToggleButton
         android:layout_width="182dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_min"
         android:checked="true"
-        android:textOn="ToggleButton Checked"
-        android:textOff="ToggleButton Not Checked"/>
-
+        android:textOff="@string/togglebutton_not_checked"
+        android:textOn="@string/togglebutton_checked" />
 
     <Button
         android:id="@+id/button_activity3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Calendar" />
+        android:text="@string/calendar" />
 
 </LinearLayout>
