@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
@@ -19,6 +20,9 @@ public class CalculatorActivity2 extends AppCompatActivity {
     TextView resultField; // текстовое поле для вывода результата
     EditText numberField;   // поле для ввода числа
     List<String> al = new ArrayList<>();
+    private final static String KEY_CALCULATOR = "CALCULATOR";
+    private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
+    private final static String KEY_NUMBER_FIELD = "NUMBER_FIELD";
 
     Calculator calculator;
 
@@ -26,7 +30,6 @@ public class CalculatorActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-
         calculator = new Calculator();
         resultField = findViewById(R.id.textView_result);
         numberField = findViewById(R.id.edit_text_input);
@@ -47,6 +50,41 @@ public class CalculatorActivity2 extends AppCompatActivity {
         initButton0ClickListener();
         initButtonDotClickListener();
 
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable(KEY_CALCULATOR, calculator);
+        outState.putString(KEY_RESULT_FIELD, String.valueOf(resultField.getText().toString()));
+        outState.putString(KEY_NUMBER_FIELD,String.valueOf(numberField.getText().toString()) );
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        calculator = (Calculator) savedInstanceState.getSerializable(KEY_CALCULATOR);
+        numberField.setText(savedInstanceState.getString(KEY_NUMBER_FIELD));
+        resultField.setText(savedInstanceState.getString(KEY_RESULT_FIELD));
+
+        initButton1ClickListener();
+        initButtonAddClickListener();
+        initButton2ClickListener();
+        initButtonEqualClickListener();
+        initButtonSubClickListener();
+        initButtonDivClickListener();
+        initButtonMultClickListener();
+        initButton3ClickListener();
+        initButton4ClickListener();
+        initButton5ClickListener();
+        initButton6ClickListener();
+        initButton7ClickListener();
+        initButton8ClickListener();
+        initButton9ClickListener();
+        initButton0ClickListener();
+        initButtonDotClickListener();
     }
 
     public void initButton1ClickListener() {
@@ -173,20 +211,20 @@ public class CalculatorActivity2 extends AppCompatActivity {
         );
     }
 
-    @SuppressLint("SetTextI18n")
     public void initButtonAddClickListener() {
         Button btnAdd = findViewById(R.id.button_add);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberField.append(btnAdd.getText());
+        btnAdd.setOnClickListener(v -> {
+            numberField.append(btnAdd.getText());
 //                lastOperation = "+";
 //                calculator.setLastOperationAdd();
 //                al.add(calculator.getSubStr());
 //                al.add(calculator.setLastOperationAdd());
 //                calculator.incrementEmptySubStr();
-                calculator.operationAdd(calculator.getSubStr());
-            }
+//            if (calculator.getOperand() != null) {
+               calculator.operationAdd(calculator.getSubStr());
+//            }
+//            resultField.setText(calculator.getSubStr());
+
         });
     }
 

@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_height_width"
         android:background="@android:color/darker_gray"
-        android:inputType="numberDecimal"
         android:layout_marginTop="@dimen/margin_min"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/textView1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +94,6 @@
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-
         android:text="@string/text_div"
         app:layout_constraintStart_toEndOf="@+id/button_9"
         app:layout_constraintTop_toTopOf="@id/guideline2" />

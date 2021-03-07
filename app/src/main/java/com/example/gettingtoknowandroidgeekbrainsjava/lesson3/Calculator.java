@@ -1,9 +1,10 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Calculator {
+public class Calculator implements Serializable {
     Double operand = 0.0;  // Результат число
     String subStr = "";
     String lastOperation = "="; // последняя операция "=" знак равно
