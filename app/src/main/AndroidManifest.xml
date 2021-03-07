@@ -20,6 +20,7 @@
         <activity android:name=".lesson1.MainActivity2"/>
         <activity android:name=".lesson1.MainActivity3"/>
         <activity android:name=".lesson2.CalculatorActivity"/>
+        <activity android:name=".lesson3.CalculatorActivity2"/>
     </application>
 
 </manifest>
