@@ -1,17 +1,46 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson3;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-public class Calculator implements Serializable {
+//public class Calculator implements Serializable {
+public class Calculator implements Parcelable {
     Double operand = 0.0;  // Результат число
     String subStr = "";
     String lastOperation = "="; // последняя операция "=" знак равно
     private List<String> al = new ArrayList<>();
-    final String[] temp = new String[1];
+    String[] temp = new String[1];
     final Double[] temp2 = {0.0};
 
+    public Calculator() {
+
+    }
+
+    protected Calculator(Parcel in) {
+        if (in.readByte() == 0) {
+            operand = null;
+        } else {
+            operand = in.readDouble();
+        }
+        subStr = in.readString();
+        lastOperation = in.readString();
+        al = in.createStringArrayList();
+        temp = in.createStringArray();
+    }
+
+    public static final Creator<Calculator> CREATOR = new Creator<Calculator>() {
+        @Override
+        public Calculator createFromParcel(Parcel in) {
+            return new Calculator(in);
+        }
+
+        @Override
+        public Calculator[] newArray(int size) {
+            return new Calculator[size];
+        }
+    };
 
     public Double getOperand() {
         return operand;
@@ -107,5 +136,24 @@ public class Calculator implements Serializable {
             }
         }
         return temp2[0];
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (operand == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(operand);
+        }
+        dest.writeString(subStr);
+        dest.writeString(lastOperation);
+        dest.writeStringList(al);
+        dest.writeStringArray(temp);
     }
 }

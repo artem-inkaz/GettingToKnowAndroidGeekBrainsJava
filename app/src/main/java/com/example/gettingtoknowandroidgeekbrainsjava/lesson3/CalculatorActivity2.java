@@ -49,23 +49,22 @@ public class CalculatorActivity2 extends AppCompatActivity {
         initButton9ClickListener();
         initButton0ClickListener();
         initButtonDotClickListener();
-
-
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putSerializable(KEY_CALCULATOR, calculator);
+//        outState.putSerializable(KEY_CALCULATOR, calculator);
+        outState.putParcelable(KEY_CALCULATOR, calculator);
         outState.putString(KEY_RESULT_FIELD, String.valueOf(resultField.getText().toString()));
-        outState.putString(KEY_NUMBER_FIELD,String.valueOf(numberField.getText().toString()) );
+        outState.putString(KEY_NUMBER_FIELD, String.valueOf(numberField.getText().toString()));
         super.onSaveInstanceState(outState);
-
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        calculator = (Calculator) savedInstanceState.getSerializable(KEY_CALCULATOR);
+//        calculator = (Calculator) savedInstanceState.getSerializable(KEY_CALCULATOR);
+        calculator = (Calculator) savedInstanceState.getParcelable(KEY_CALCULATOR);
         numberField.setText(savedInstanceState.getString(KEY_NUMBER_FIELD));
         resultField.setText(savedInstanceState.getString(KEY_RESULT_FIELD));
 
@@ -220,11 +219,7 @@ public class CalculatorActivity2 extends AppCompatActivity {
 //                al.add(calculator.getSubStr());
 //                al.add(calculator.setLastOperationAdd());
 //                calculator.incrementEmptySubStr();
-//            if (calculator.getOperand() != null) {
-               calculator.operationAdd(calculator.getSubStr());
-//            }
-//            resultField.setText(calculator.getSubStr());
-
+            calculator.operationAdd(calculator.getSubStr());
         });
     }
 
@@ -270,7 +265,7 @@ public class CalculatorActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resultField.setText(calculator.magicCalc().toString());
-             }
+            }
         });
     }
 }
