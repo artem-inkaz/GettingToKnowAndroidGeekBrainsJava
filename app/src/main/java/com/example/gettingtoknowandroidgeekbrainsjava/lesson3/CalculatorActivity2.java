@@ -17,9 +17,8 @@ import java.util.List;
 
 public class CalculatorActivity2 extends AppCompatActivity {
 
-    TextView resultField; // текстовое поле для вывода результата
-    EditText numberField;   // поле для ввода числа
-    List<String> al = new ArrayList<>();
+   private TextView resultField; // текстовое поле для вывода результата
+   private EditText numberField;   // поле для ввода числа
     private final static String KEY_CALCULATOR = "CALCULATOR";
     private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
     private final static String KEY_NUMBER_FIELD = "NUMBER_FIELD";
@@ -33,22 +32,26 @@ public class CalculatorActivity2 extends AppCompatActivity {
         calculator = new Calculator();
         resultField = findViewById(R.id.textView_result);
         numberField = findViewById(R.id.edit_text_input);
-        initButton1ClickListener();
+//        initButton1ClickListener();
+//        initButton2ClickListener();
+
+        initButtonClickListener(R.id.button_0);
+        initButtonClickListener(R.id.button_1);
+        initButtonClickListener(R.id.button_2);
+        initButtonClickListener(R.id.button_3);
+        initButtonClickListener(R.id.button_4);
+        initButtonClickListener(R.id.button_5);
+        initButtonClickListener(R.id.button_6);
+        initButtonClickListener(R.id.button_7);
+        initButtonClickListener(R.id.button_8);
+        initButtonClickListener(R.id.button_9);
+        initButtonClickListener(R.id.button_dot);
+
         initButtonAddClickListener();
-        initButton2ClickListener();
         initButtonEqualClickListener();
         initButtonSubClickListener();
         initButtonDivClickListener();
         initButtonMultClickListener();
-        initButton3ClickListener();
-        initButton4ClickListener();
-        initButton5ClickListener();
-        initButton6ClickListener();
-        initButton7ClickListener();
-        initButton8ClickListener();
-        initButton9ClickListener();
-        initButton0ClickListener();
-        initButtonDotClickListener();
     }
 
     @Override
@@ -68,22 +71,24 @@ public class CalculatorActivity2 extends AppCompatActivity {
         numberField.setText(savedInstanceState.getString(KEY_NUMBER_FIELD));
         resultField.setText(savedInstanceState.getString(KEY_RESULT_FIELD));
 
-        initButton1ClickListener();
+        initButtonClickListener(R.id.button_0);
+        initButtonClickListener(R.id.button_1);
+        initButtonClickListener(R.id.button_2);
+        initButtonClickListener(R.id.button_3);
+        initButtonClickListener(R.id.button_4);
+        initButtonClickListener(R.id.button_5);
+        initButtonClickListener(R.id.button_6);
+        initButtonClickListener(R.id.button_7);
+        initButtonClickListener(R.id.button_8);
+        initButtonClickListener(R.id.button_9);
+        initButtonClickListener(R.id.button_dot);
+
         initButtonAddClickListener();
-        initButton2ClickListener();
         initButtonEqualClickListener();
         initButtonSubClickListener();
         initButtonDivClickListener();
         initButtonMultClickListener();
-        initButton3ClickListener();
-        initButton4ClickListener();
-        initButton5ClickListener();
-        initButton6ClickListener();
-        initButton7ClickListener();
-        initButton8ClickListener();
-        initButton9ClickListener();
-        initButton0ClickListener();
-        initButtonDotClickListener();
+
     }
 
     public void initButton1ClickListener() {
@@ -109,105 +114,15 @@ public class CalculatorActivity2 extends AppCompatActivity {
         );
     }
 
-    public void initButton3ClickListener() {
-        Button btn3 = findViewById(R.id.button_3);
-        btn3.setOnClickListener(v -> {
-                    numberField.append(btn3.getText());
-                    calculator.incrementSubStr((String) btn3.getText());
-                    if (calculator.getOperand() != null) {
-                        resultField.setText(calculator.getSubStr());
-                    }
-                }
-        );
-    }
-
-    public void initButton4ClickListener() {
-        Button btn4 = findViewById(R.id.button_4);
-        btn4.setOnClickListener(v -> {
-            numberField.append(btn4.getText());
-            calculator.incrementSubStr((String) btn4.getText());
+    public void initButtonClickListener(int id) {
+        Button btn = findViewById(id);
+        btn.setOnClickListener(v -> {
+            numberField.append(btn.getText());
+            calculator.incrementSubStr((String) btn.getText());
             if (calculator.getOperand() != null) {
                 resultField.setText(calculator.getSubStr());
             }
         });
-    }
-
-    public void initButton5ClickListener() {
-        Button btn5 = findViewById(R.id.button_5);
-        btn5.setOnClickListener(v -> {
-            numberField.append(btn5.getText());
-            calculator.incrementSubStr((String) btn5.getText());
-            if (calculator.getOperand() != null) {
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButton6ClickListener() {
-        Button btn6 = findViewById(R.id.button_6);
-        btn6.setOnClickListener(v -> {
-            numberField.append(btn6.getText());
-            calculator.incrementSubStr((String) btn6.getText());
-            if (calculator.getOperand() != null) {
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButton7ClickListener() {
-        Button btn7 = findViewById(R.id.button_7);
-        btn7.setOnClickListener(v -> {
-            numberField.append(btn7.getText());
-            calculator.incrementSubStr((String) btn7.getText());
-            if (calculator.getOperand() != null) {
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButton8ClickListener() {
-        Button btn8 = findViewById(R.id.button_8);
-        btn8.setOnClickListener(v -> {
-            numberField.append(btn8.getText());
-            calculator.incrementSubStr((String) btn8.getText());
-            if (calculator.getOperand() != null) {
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButton9ClickListener() {
-        Button btn9 = findViewById(R.id.button_9);
-        btn9.setOnClickListener(v -> {
-            numberField.append(btn9.getText());
-            calculator.incrementSubStr((String) btn9.getText());
-            if (calculator.getOperand() != null) {
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButton0ClickListener() {
-        Button btn0 = findViewById(R.id.button_0);
-        btn0.setOnClickListener(v -> {
-            numberField.append(btn0.getText());
-            calculator.incrementSubStr((String) btn0.getText());
-            if (calculator.getOperand() != null) {
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButtonDotClickListener() {
-        Button btnDot = findViewById(R.id.button_dot);
-        btnDot.setOnClickListener(v -> {
-                    numberField.append(btnDot.getText());
-                    calculator.incrementSubStr((String) btnDot.getText());
-                    if (calculator.getOperand() != null) {
-                        resultField.setText(calculator.getSubStr());
-                    }
-                }
-        );
     }
 
     public void initButtonAddClickListener() {
