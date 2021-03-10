@@ -81,6 +81,11 @@ public class Calculator implements Parcelable {
         subStr = "";
     }
 
+    public void operationOn(){
+        al.clear();
+        subStr = "";
+    }
+
     public void operationSub(String subStrSub) {
         lastOperation = "-";
         al.add(subStrSub);

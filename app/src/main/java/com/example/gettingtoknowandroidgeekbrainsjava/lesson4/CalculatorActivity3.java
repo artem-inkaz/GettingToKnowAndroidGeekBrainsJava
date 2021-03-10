@@ -1,4 +1,4 @@
-package com.example.gettingtoknowandroidgeekbrainsjava.lesson3;
+package com.example.gettingtoknowandroidgeekbrainsjava.lesson4;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,14 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson3.Calculator;
 import com.google.android.material.textfield.TextInputLayout;
 
 
-public class CalculatorActivity2 extends AppCompatActivity {
+public class CalculatorActivity3 extends ThemeActivity {
 
     private TextView resultField; // текстовое поле для вывода результата
     private TextInputLayout mTextInputLayout;
@@ -27,7 +29,9 @@ public class CalculatorActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(getAppTheme(R.style.AppThemeLight));
         setContentView(R.layout.activity_calculator);
+
         calculator = new Calculator();
         resultField = findViewById(R.id.textView_result);
         numberField = findViewById(R.id.edit_text_input);
@@ -50,6 +54,9 @@ public class CalculatorActivity2 extends AppCompatActivity {
         initButtonDivClickListener();
         initButtonMultClickListener();
         initButtonOnClickListener();
+
+        initButtonSetThemeClickListener(R.id.button_light_mode,AppThemeLight);
+        initButtonSetThemeClickListener(R.id.button_night_mode,AppThemeDark);
     }
 
     @Override
@@ -100,6 +107,17 @@ public class CalculatorActivity2 extends AppCompatActivity {
             }
         });
     }
+
+    public void initButtonSetThemeClickListener(int id, final int codeStyle) {
+        Button btn = findViewById(id);
+        btn.setOnClickListener(v -> {
+            // сохраним настройки
+            setAppTheme(codeStyle);
+            // пересоздадим активити, чтобы тема применилась
+            recreate();
+        });
+    }
+
 
     public void initButtonAddClickListener() {
         Button btnAdd = findViewById(R.id.button_add);

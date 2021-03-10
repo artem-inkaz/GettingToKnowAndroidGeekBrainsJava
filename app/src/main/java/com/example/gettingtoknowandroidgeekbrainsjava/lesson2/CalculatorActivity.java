@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson3.Calculator;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,8 @@ import java.util.List;
 public class CalculatorActivity extends AppCompatActivity {
 
   private   TextView resultField; // текстовое поле для вывода результата
-  private  EditText numberField;   // поле для ввода числа
+  private TextInputLayout mTextInputLayout;
+  private TextInputEditText numberField;   // поле для ввода числа
     Double operand = 0.0;  // Результат число
     String subStr = "";
     String lastOperation = "="; // последняя операция "=" знак равно
@@ -29,8 +32,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
         resultField = findViewById(R.id.textView_result);
         numberField = findViewById(R.id.edit_text_input);
-//        initButton1ClickListener();
-//        initButton2ClickListener();
+
         initButtonClickListener(R.id.button_0);
         initButtonClickListener(R.id.button_1);
         initButtonClickListener(R.id.button_2);
@@ -48,28 +50,6 @@ public class CalculatorActivity extends AppCompatActivity {
         initButtonSubClickListener();
         initButtonDivClickListener();
         initButtonMultClickListener();
-    }
-
-    public void initButton1ClickListener() {
-        Button btn1 = findViewById(R.id.button_1);
-        btn1.setOnClickListener(v -> {
-            numberField.append(btn1.getText());
-            if (operand != null) {
-                subStr += btn1.getText();
-                resultField.setText(subStr.toString());
-            }
-        });
-    }
-
-    public void initButton2ClickListener() {
-        Button btn2 = findViewById(R.id.button_2);
-        btn2.setOnClickListener(v -> {
-            numberField.append(btn2.getText());
-            subStr += btn2.getText();
-            if (operand != null) {
-                resultField.setText(subStr.toString());
-            }
-        });
     }
 
     public void initButtonClickListener(int id) {
