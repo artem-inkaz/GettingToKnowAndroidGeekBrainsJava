@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorText" format="color" />
+    <attr name="colorBackground" format="color" />
+    <attr name="colorTextResult" format="color" />
+    <attr name="colorBackgroundEditText" format="color" />
+    <attr name="colorBackgroundTintButtonNumber" format="color" />
+    <attr name="colorBackgroundTintButtonOperation" format="color" />
+    <attr name="colorBackgroundTintButtonONc" format="color" />
+    <attr name="colorBackgroundTintButtonEquals" format="color" />
+    <attr name="colorBackgroundTintButtonDot" format="color" />
+    <attr name="colorTextButton" format="color" />
+    <attr name="colorIconTintDark" format="color" />
+    <attr name="colorIconTintLight" format="color" />
+    <attr name="colorBackgroundTintButtonDark" format="color" />
+    <attr name="colorBackgroundTintButtonLight" format="color" />
+</resources>
