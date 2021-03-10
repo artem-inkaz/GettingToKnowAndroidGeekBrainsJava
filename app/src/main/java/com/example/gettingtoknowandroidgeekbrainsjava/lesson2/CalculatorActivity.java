@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson3.Calculator;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,8 @@ import java.util.List;
 public class CalculatorActivity extends AppCompatActivity {
 
   private   TextView resultField; // текстовое поле для вывода результата
-  private  EditText numberField;   // поле для ввода числа
+  private TextInputLayout mTextInputLayout;
+  private TextInputEditText numberField;   // поле для ввода числа
     Double operand = 0.0;  // Результат число
     String subStr = "";
     String lastOperation = "="; // последняя операция "=" знак равно

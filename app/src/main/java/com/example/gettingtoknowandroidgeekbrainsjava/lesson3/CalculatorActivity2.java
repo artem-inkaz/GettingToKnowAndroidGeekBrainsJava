@@ -6,18 +6,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CalculatorActivity2 extends AppCompatActivity {
 
     private TextView resultField; // текстовое поле для вывода результата
+    private TextInputLayout mTextInputLayout;
     private EditText numberField;   // поле для ввода числа
     private final static String KEY_CALCULATOR = "CALCULATOR";
     private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
@@ -50,6 +49,7 @@ public class CalculatorActivity2 extends AppCompatActivity {
         initButtonSubClickListener();
         initButtonDivClickListener();
         initButtonMultClickListener();
+        initButtonOnClickListener();
     }
 
     @Override
@@ -86,6 +86,7 @@ public class CalculatorActivity2 extends AppCompatActivity {
         initButtonSubClickListener();
         initButtonDivClickListener();
         initButtonMultClickListener();
+        initButtonOnClickListener();
 
     }
 
@@ -105,6 +106,15 @@ public class CalculatorActivity2 extends AppCompatActivity {
         btnAdd.setOnClickListener(v -> {
             numberField.append(btnAdd.getText());
             calculator.operationAdd(calculator.getSubStr());
+        });
+    }
+
+    public void initButtonOnClickListener() {
+        Button btnClear = findViewById(R.id.button_clear);
+        btnClear.setOnClickListener(v -> {
+            numberField.setText("");
+            calculator.operationOn();
+            resultField.setText("");
         });
     }
 
