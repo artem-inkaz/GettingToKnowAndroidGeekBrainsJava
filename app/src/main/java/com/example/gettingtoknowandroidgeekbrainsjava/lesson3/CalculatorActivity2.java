@@ -17,8 +17,8 @@ import java.util.List;
 
 public class CalculatorActivity2 extends AppCompatActivity {
 
-   private TextView resultField; // текстовое поле для вывода результата
-   private EditText numberField;   // поле для ввода числа
+    private TextView resultField; // текстовое поле для вывода результата
+    private EditText numberField;   // поле для ввода числа
     private final static String KEY_CALCULATOR = "CALCULATOR";
     private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
     private final static String KEY_NUMBER_FIELD = "NUMBER_FIELD";
@@ -32,8 +32,6 @@ public class CalculatorActivity2 extends AppCompatActivity {
         calculator = new Calculator();
         resultField = findViewById(R.id.textView_result);
         numberField = findViewById(R.id.edit_text_input);
-//        initButton1ClickListener();
-//        initButton2ClickListener();
 
         initButtonClickListener(R.id.button_0);
         initButtonClickListener(R.id.button_1);
@@ -91,29 +89,6 @@ public class CalculatorActivity2 extends AppCompatActivity {
 
     }
 
-    public void initButton1ClickListener() {
-        Button btn1 = findViewById(R.id.button_1);
-        btn1.setOnClickListener(v -> {
-            numberField.append(btn1.getText());
-            if (calculator.getOperand() != null) {
-                calculator.incrementSubStr((String) btn1.getText());
-                resultField.setText(calculator.getSubStr());
-            }
-        });
-    }
-
-    public void initButton2ClickListener() {
-        Button btn2 = findViewById(R.id.button_2);
-        btn2.setOnClickListener(v -> {
-                    numberField.append(btn2.getText());
-                    calculator.incrementSubStr((String) btn2.getText());
-                    if (calculator.getOperand() != null) {
-                        resultField.setText(calculator.getSubStr());
-                    }
-                }
-        );
-    }
-
     public void initButtonClickListener(int id) {
         Button btn = findViewById(id);
         btn.setOnClickListener(v -> {
@@ -129,11 +104,6 @@ public class CalculatorActivity2 extends AppCompatActivity {
         Button btnAdd = findViewById(R.id.button_add);
         btnAdd.setOnClickListener(v -> {
             numberField.append(btnAdd.getText());
-//                lastOperation = "+";
-//                calculator.setLastOperationAdd();
-//                al.add(calculator.getSubStr());
-//                al.add(calculator.setLastOperationAdd());
-//                calculator.incrementEmptySubStr();
             calculator.operationAdd(calculator.getSubStr());
         });
     }

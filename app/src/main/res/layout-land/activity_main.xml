@@ -15,7 +15,7 @@
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/android_1_java"
-        android:textSize="40sp"
+        android:textSize="@dimen/dimen_text_size_activity"
         android:textStyle="bold" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="@string/homework_title"
-        android:textSize="30sp" />
+        android:textSize="@dimen/dimen_text_size_sub_activity" />
 
     <TableRow
         android:layout_width="wrap_content"

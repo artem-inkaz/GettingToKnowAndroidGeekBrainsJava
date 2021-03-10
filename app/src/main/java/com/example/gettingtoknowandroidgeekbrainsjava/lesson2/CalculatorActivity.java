@@ -29,8 +29,7 @@ public class CalculatorActivity extends AppCompatActivity {
 
         resultField = findViewById(R.id.textView_result);
         numberField = findViewById(R.id.edit_text_input);
-//        initButton1ClickListener();
-//        initButton2ClickListener();
+
         initButtonClickListener(R.id.button_0);
         initButtonClickListener(R.id.button_1);
         initButtonClickListener(R.id.button_2);
@@ -48,28 +47,6 @@ public class CalculatorActivity extends AppCompatActivity {
         initButtonSubClickListener();
         initButtonDivClickListener();
         initButtonMultClickListener();
-    }
-
-    public void initButton1ClickListener() {
-        Button btn1 = findViewById(R.id.button_1);
-        btn1.setOnClickListener(v -> {
-            numberField.append(btn1.getText());
-            if (operand != null) {
-                subStr += btn1.getText();
-                resultField.setText(subStr.toString());
-            }
-        });
-    }
-
-    public void initButton2ClickListener() {
-        Button btn2 = findViewById(R.id.button_2);
-        btn2.setOnClickListener(v -> {
-            numberField.append(btn2.getText());
-            subStr += btn2.getText();
-            if (operand != null) {
-                resultField.setText(subStr.toString());
-            }
-        });
     }
 
     public void initButtonClickListener(int id) {

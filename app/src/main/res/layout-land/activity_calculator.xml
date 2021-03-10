@@ -68,7 +68,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="121dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_8"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toTopOf="@id/guideline2"
         tools:layout_editor_absoluteY="214dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_7"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline2" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_div"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
         app:layout_constraintStart_toEndOf="@+id/button_9"
         app:layout_constraintTop_toTopOf="@id/guideline2" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_persent"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
         app:layout_constraintStart_toEndOf="@id/button_div"
         app:layout_constraintTop_toTopOf="@id/guideline2" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_4"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_7" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_5"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_8"
         tools:layout_editor_absoluteY="262dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_6"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_9"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_multi"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_div"
         tools:layout_editor_absoluteY="262dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_x"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_persent"
         tools:layout_editor_absoluteY="262dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_1"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_4" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_3"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
         app:layout_constraintStart_toEndOf="@id/button_2"
         app:layout_constraintTop_toBottomOf="@id/button_6" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_sub"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
         app:layout_constraintStart_toEndOf="@id/button_3"
         app:layout_constraintTop_toBottomOf="@id/button_multi" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_2"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_5"
         tools:layout_editor_absoluteY="310dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_equal"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="96dp"
@@ -208,7 +208,7 @@
         app:layout_constraintStart_toEndOf="@+id/button_add"
         tools:layout_editor_absoluteY="310dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_0"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_1" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_dot"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
         app:layout_constraintStart_toEndOf="@+id/button_0"
         app:layout_constraintTop_toBottomOf="@id/button_3" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_add"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
         app:layout_constraintStart_toEndOf="@id/button_dot"
         app:layout_constraintTop_toBottomOf="@id/button_sub" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_9"
         android:layout_width="@dimen/dimen_height_width"
         android:layout_height="wrap_content"
