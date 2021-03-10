@@ -108,7 +108,7 @@ public class CalculatorActivity3 extends ThemeActivity {
         });
     }
 
-    public void initButtonSetThemeClickListener(int id,final int codeStyle) {
+    public void initButtonSetThemeClickListener(int id, final int codeStyle) {
         Button btn = findViewById(id);
         btn.setOnClickListener(v -> {
             // сохраним настройки

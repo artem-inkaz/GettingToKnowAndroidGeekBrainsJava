@@ -30,7 +30,7 @@ public abstract class ThemeActivity extends AppCompatActivity {
     }
 
     // Чтение настроек, параметр тема
-    protected int getCodeStyle(int codeStyle){
+    protected int getCodeStyle(int codeStyle) {
         // Работаем через специальный класс сохранения и чтения настроек
         SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
@@ -46,8 +46,8 @@ public abstract class ThemeActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private int codeStyleToStyleId(int codeStyle){
-        switch(codeStyle){
+    private int codeStyleToStyleId(int codeStyle) {
+        switch (codeStyle) {
             case AppThemeLight:
                 return R.style.AppThemeLight;
             case AppThemeDark:
