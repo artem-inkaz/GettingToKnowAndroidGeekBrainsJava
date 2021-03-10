@@ -3,9 +3,22 @@
     <dimen name="margin_main">10dp</dimen>
     <dimen name="margin_min">5dp</dimen>
     <dimen name="dimen_height_width">60dp</dimen>
+    <dimen name="dimen_height_edit_text">40dp</dimen>
     <dimen name="margin_start">16dp</dimen>
     <dimen name="dimen_text_size_result">20sp</dimen>
     <dimen name="dimen_text_result_field">30sp</dimen>
     <dimen name="dimen_text_size_activity">40sp</dimen>
     <dimen name="dimen_text_size_sub_activity">30sp</dimen>
+    <dimen name="dimen_start_landscape">164dp</dimen>
+    <dimen name="dimen_margin_start_calc">20dp</dimen>
+    <dimen name="dimen_margin_start_text_result">8dp</dimen>
+    <dimen name="dimen_height_equals">96dp</dimen>
+    <dimen name="dimen_width_btn_zero">130dp</dimen>
+    <dimen name="dimen_width_btn_onc">336dp</dimen>
+    <dimen name="dimen_heigth_btn_onc">46dp</dimen>
+    <dimen name="dimen_margin_start_result_land">200dp</dimen>
+    <dimen name="dimen__margin_start_text_result_land">44dp</dimen>
+    <dimen name="dimen_margin_start_12">12dp</dimen>
+    <dimen name="dimen_width_btn_onc_land">347dp</dimen>
+    <dimen name="dimen_height_btn_onc_land">47dp</dimen>
 </resources>

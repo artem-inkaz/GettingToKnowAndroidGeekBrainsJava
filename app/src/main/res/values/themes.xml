@@ -16,4 +16,10 @@
     <style name="ButtonOperationCalculator">
         <item name="android:backgroundTint">@color/purple_200</item>
     </style>
+    <style name="ButtonEqualsCalculator">
+        <item name="android:icon">@drawable/ic_equals</item>
+     </style>
+    <style name="ButtonONCCalculator">
+        <item name="android:backgroundTint">#FF46AF18</item>
+    </style>
 </resources>
