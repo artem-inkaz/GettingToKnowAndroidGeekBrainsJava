@@ -24,7 +24,7 @@ public class CalculatorActivity3 extends ThemeActivity {
     private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
     private final static String KEY_NUMBER_FIELD = "NUMBER_FIELD";
 
-    Calculator calculator;
+   private Calculator calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,24 +76,24 @@ public class CalculatorActivity3 extends ThemeActivity {
         numberField.setText(savedInstanceState.getString(KEY_NUMBER_FIELD));
         resultField.setText(savedInstanceState.getString(KEY_RESULT_FIELD));
 
-        initButtonClickListener(R.id.button_0);
-        initButtonClickListener(R.id.button_1);
-        initButtonClickListener(R.id.button_2);
-        initButtonClickListener(R.id.button_3);
-        initButtonClickListener(R.id.button_4);
-        initButtonClickListener(R.id.button_5);
-        initButtonClickListener(R.id.button_6);
-        initButtonClickListener(R.id.button_7);
-        initButtonClickListener(R.id.button_8);
-        initButtonClickListener(R.id.button_9);
-        initButtonClickListener(R.id.button_dot);
+//        initButtonClickListener(R.id.button_0);
+//        initButtonClickListener(R.id.button_1);
+//        initButtonClickListener(R.id.button_2);
+//        initButtonClickListener(R.id.button_3);
+//        initButtonClickListener(R.id.button_4);
+//        initButtonClickListener(R.id.button_5);
+//        initButtonClickListener(R.id.button_6);
+//        initButtonClickListener(R.id.button_7);
+//        initButtonClickListener(R.id.button_8);
+//        initButtonClickListener(R.id.button_9);
+//        initButtonClickListener(R.id.button_dot);
 
-        initButtonAddClickListener();
-        initButtonEqualClickListener();
-        initButtonSubClickListener();
-        initButtonDivClickListener();
-        initButtonMultClickListener();
-        initButtonOnClickListener();
+//        initButtonAddClickListener();
+//        initButtonEqualClickListener();
+//        initButtonSubClickListener();
+//        initButtonDivClickListener();
+//        initButtonMultClickListener();
+//        initButtonOnClickListener();
 
     }
 

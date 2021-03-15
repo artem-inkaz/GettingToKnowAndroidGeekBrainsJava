@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonLesson2 = findViewById(R.id.button_lesson_2);
         Button buttonLesson3 = findViewById(R.id.button_lesson_3);
         Button buttonLesson4 = findViewById(R.id.button_lesson_4);
-//        Button buttonLesson5 = findViewById(R.id.button_lesson_5);
+        Button buttonLesson5 = findViewById(R.id.button_lesson_5);
 //        Button buttonLesson6 = findViewById(R.id.button_lesson_6);
 //        Button buttonLesson7 = findViewById(R.id.button_lesson_7);
 //        Button buttonLesson8 = findViewById(R.id.button_lesson_8);
@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void launchCalculatorActivity(){
+    private void launchCalculatorActivity() {
         Intent intent = new Intent(MainActivity.this, CalculatorActivity.class);
         startActivity(intent);
     }
 
-    private void launchCalculatorActivity2(){
+    private void launchCalculatorActivity2() {
         Intent intent = new Intent(MainActivity.this, CalculatorActivity2.class);
         startActivity(intent);
     }
-    private void launchCalculatorActivity3(){
+    private void launchCalculatorActivity3() {
         Intent intent = new Intent(MainActivity.this, CalculatorActivity3.class);
         startActivity(intent);
     }

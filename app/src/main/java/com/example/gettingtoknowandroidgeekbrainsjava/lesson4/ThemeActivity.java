@@ -10,7 +10,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.R;
 public abstract class ThemeActivity extends AppCompatActivity {
 
     // Имя настроек
-    private static final String NameSharedPreference = "LOGIN";
+    private static final String NAME_SHARED_PREFERENCE = "LOGIN";
 
     // Имя параметра в настройках
     private static final String AppTheme = "APP_THEME";
@@ -32,14 +32,14 @@ public abstract class ThemeActivity extends AppCompatActivity {
     // Чтение настроек, параметр тема
     protected int getCodeStyle(int codeStyle) {
         // Работаем через специальный класс сохранения и чтения настроек
-        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
         return sharedPref.getInt(AppTheme, codeStyle);
     }
 
     // Сохранение настроек
     protected void setAppTheme(int codeStyle) {
-        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         // Настройки сохраняются посредством специального класса editor.
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(AppTheme, codeStyle);
