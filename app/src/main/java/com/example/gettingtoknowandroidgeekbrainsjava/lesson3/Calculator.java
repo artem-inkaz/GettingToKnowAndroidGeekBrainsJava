@@ -13,9 +13,14 @@ public class Calculator implements Parcelable {
     private List<String> al = new ArrayList<>();
     String[] temp = new String[1];
     final Double[] temp2 = {0.0};
+    private int flag = 0;
 
     public Calculator() {
 
+    }
+
+    public void setAl(List<String> al) {
+        this.al = al;
     }
 
     protected Calculator(Parcel in) {
@@ -106,15 +111,26 @@ public class Calculator implements Parcelable {
         al.add(lastOperation);
         subStr = "";
     }
+    public void operationRecieveDadta(String formula) {
+        flag = 1;
+        String[] res = new String[formula.length()];
+        for (int i = 0; i < formula.length(); i++) {
+            res[i] = Character.toString(formula.charAt(i));
+            al.add(res[i]);
+        }
+
+    }
 
     public Double magicCalc() {
-        al.add(subStr.toString());
+        if (flag != 1) {
+            al.add(subStr);
+        }
         for (int i = 0; i < al.size(); i++) {
             temp[0] = al.get(i);
             if (al.get(i).equals("+") && temp2[0] == 0.0) {
                 temp2[0] = Double.parseDouble(al.get(i - 1)) + Double.parseDouble(al.get(i + 1));
             } else if (al.get(i).equals("+") && temp2[0] != 0.0) {
-                if (al.get(i + 2).equals("+") || al.get(i + 2).equals("-")) {
+                if (al.get(i + 1).equals("+") || al.get(i + 1).equals("-")) {
                     temp2[0] = temp2[0] + Double.parseDouble(al.get(i + 1));
                 }
             }

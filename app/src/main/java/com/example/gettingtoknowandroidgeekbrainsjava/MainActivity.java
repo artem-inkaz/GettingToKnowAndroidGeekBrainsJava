@@ -13,6 +13,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson1.MainActivity1;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson2.CalculatorActivity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson3.CalculatorActivity2;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson4.CalculatorActivity3;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson5.SettingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLesson2.setOnClickListener(v -> launchCalculatorActivity());
         buttonLesson3.setOnClickListener(v -> launchCalculatorActivity2());
         buttonLesson4.setOnClickListener(v -> launchCalculatorActivity3());
+        buttonLesson5.setOnClickListener(v -> launchCalculatorActivity4());
     }
 
     private void launchMainActivity1() {
@@ -55,8 +57,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, CalculatorActivity2.class);
         startActivity(intent);
     }
+
     private void launchCalculatorActivity3() {
         Intent intent = new Intent(MainActivity.this, CalculatorActivity3.class);
+        startActivity(intent);
+    }
+
+    private void launchCalculatorActivity4() {
+        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
         startActivity(intent);
     }
 }

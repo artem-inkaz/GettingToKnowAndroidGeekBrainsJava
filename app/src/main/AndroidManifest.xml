@@ -12,16 +12,32 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".lesson1.MainActivity1"/>
-        <activity android:name=".lesson1.MainActivity2"/>
-        <activity android:name=".lesson1.MainActivity3"/>
-        <activity android:name=".lesson2.CalculatorActivity"/>
-        <activity android:name=".lesson3.CalculatorActivity2"/>
-        <activity android:name=".lesson4.CalculatorActivity3"/>
+        <activity android:name=".lesson1.MainActivity1" />
+        <activity android:name=".lesson1.MainActivity2" />
+        <activity android:name=".lesson1.MainActivity3" />
+        <activity android:name=".lesson2.CalculatorActivity" />
+        <activity android:name=".lesson3.CalculatorActivity2" />
+        <activity android:name=".lesson4.CalculatorActivity3" />
+        <activity android:name=".lesson5.CalculatorActivity4" />
+        <activity android:name=".lesson5.SettingActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <!-- Принимаем URI с началом "example://intent” -->
+            <data android:scheme="example"
+                android:host="intent" />
+            <!-- Принимаем URI с началом "https://intent” -->
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>

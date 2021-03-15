@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lesson5.SettingActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_title_setting"
+        android:text="@string/text_title_setting"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_theme_setting"
+        android:text="@string/text_title_theme_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_night_mode_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorBackgroundTintButtonDark"
+        app:icon="@drawable/ic_dark_mode_enable"
+        app:iconGravity="textStart"
+        app:iconTint="?attr/colorIconTintDark"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_light_mode_setting"
+        app:layout_constraintStart_toStartOf="@id/guideline9" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_light_mode_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="152dp"
+        android:backgroundTint="?attr/colorBackgroundTintButtonLight"
+        app:icon="@drawable/ic_light_mode"
+        app:iconGravity="textStart"
+        app:iconTint="?attr/colorIconTintLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button_send_settings"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Отправить \n настройки"
+        android:textSize="12sp"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/button_light_mode_setting"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/text_title_formula_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_night_mode_setting" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/edit_text_input_setting"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/dimen_height_edit_text"
+        android:layout_marginTop="12dp"
+        android:background="?attr/colorBackgroundEditText"
+        android:inputType="text"
+        android:paddingStart="@dimen/margin_min"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="66dp" />
+
+    <TextView
+        android:id="@+id/text_title_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_result"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dimen_text_size_result"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_result_setting"
+        app:layout_constraintStart_toStartOf="@id/edit_text_input_setting" />
+
+    <TextView
+        android:id="@+id/textView_result_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_text_result"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/dimen_text_result_field"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/text_title_result"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_input_setting"
+        tools:text="Результат" />
+
+    <Button
+        android:id="@+id/button__send_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Отправить \n данные"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/guideline9"
+        app:layout_constraintTop_toBottomOf="@id/text_title_result" />
+
+    <Button
+        android:id="@+id/button_recieve_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:text="Отправить и\n получить"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/button__send_data"
+        app:layout_constraintTop_toBottomOf="@id/text_title_result" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button__calc_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="?attr/colorBackgroundTintButtonDark"
+        app:icon="@drawable/ic_calculate"
+        app:iconGravity="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/button_recieve_data"
+        app:layout_constraintTop_toBottomOf="@id/text_title_result" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
