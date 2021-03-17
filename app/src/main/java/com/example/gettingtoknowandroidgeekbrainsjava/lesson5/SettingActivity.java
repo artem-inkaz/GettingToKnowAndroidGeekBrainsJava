@@ -166,9 +166,9 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     }
 
     private void recieveDataFromOtherApp() {
-        String value = getIntent().getExtras().getString("SEND_DATA_TO_OTHER_APP");
-        if (value != null) {
-            numberFieldSettings.setText(value);
-        }
+//        String value = getIntent().getExtras().getString("SEND_DATA_TO_OTHER_APP");
+//        if (value != null) {
+//            numberFieldSettings.setText(value);
+//        }
     }
 }

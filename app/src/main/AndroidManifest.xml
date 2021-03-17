@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_geekbrains_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".lesson6.NotesLandScapeActivity"></activity>
+        <activity android:name=".lesson6.NoteBookActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,21 +25,25 @@
         <activity android:name=".lesson3.CalculatorActivity2" />
         <activity android:name=".lesson4.CalculatorActivity3" />
         <activity android:name=".lesson5.CalculatorActivity4" />
-        <activity android:name=".lesson5.SettingActivity"
+        <activity
+            android:name=".lesson5.SettingActivity"
             android:launchMode="singleTop">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Принимаем URI с началом "example://intent” -->
+                <data
+                    android:host="intent"
+                    android:scheme="example" />
+                <!-- Принимаем URI с началом "https://intent” -->
             </intent-filter>
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <!-- Принимаем URI с началом "example://intent” -->
-            <data android:scheme="example"
-                android:host="intent" />
-            <!-- Принимаем URI с началом "https://intent” -->
-        </intent-filter>
         </activity>
     </application>
 
