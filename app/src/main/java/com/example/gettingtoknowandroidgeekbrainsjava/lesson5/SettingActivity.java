@@ -164,7 +164,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
     }
-
+    // закоментировали для выполнения поледующих лаб также закомментировали в манифесте несколько строчек
     private void recieveDataFromOtherApp() {
 //        String value = getIntent().getExtras().getString("SEND_DATA_TO_OTHER_APP");
 //        if (value != null) {

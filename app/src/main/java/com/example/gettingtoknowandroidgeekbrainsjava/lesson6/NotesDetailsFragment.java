@@ -1,5 +1,6 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson6;
 
+import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
@@ -19,12 +20,11 @@ import com.example.gettingtoknowandroidgeekbrainsjava.R;
  */
 public class NotesDetailsFragment extends Fragment {
 
-    private static final String ARG_INDEX = "ARG_INDEX";
+    public static final String ARG_INDEX = "ARG_INDEX";
     private int index;
 
     // Фабричный метод создания фрагмента
     // Фрагменты рекомендуется создавать через фабричные методы.
-    // TODO: Rename and change types and number of parameters
     // Этот метод получает на входе параметр — индекс элемента массива с записями,
     // который затем передаётся дальше. По этому индексу приложение вытаскивает
     // изображение записи из массива  <integer-array name="notes_imgs">.
@@ -33,7 +33,7 @@ public class NotesDetailsFragment extends Fragment {
         NotesDetailsFragment fragment = new NotesDetailsFragment();
         // передача параметров
         Bundle args = new Bundle();
-        args.putString(ARG_INDEX, String.valueOf(index));
+        args.putInt(ARG_INDEX, index);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,7 +58,7 @@ public class NotesDetailsFragment extends Fragment {
        // найти в контейнере элемент-изображение
         AppCompatImageView imageNotes = view.findViewById(R.id.notes_image);
         // Получить из ресурсов массив указателей на изображения гербов
-        TypedArray images = getResources().obtainTypedArray(R.array.notes_imgs);
+        @SuppressLint("Recycle") TypedArray images = getResources().obtainTypedArray(R.array.notes_imgs);
         // Выбрать по индексу подходящий
         imageNotes.setImageResource(images.getResourceId(index, -1));
 
