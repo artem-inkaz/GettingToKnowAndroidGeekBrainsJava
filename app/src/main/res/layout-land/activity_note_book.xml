@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
     <!-- Фрагмент с выбором записей -->
-    <fragment android:name="com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesFragment"
+    <fragment
         android:id="@+id/notes"
-        android:layout_weight="1"
+        android:name="com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesFragment"
         android:layout_width="0px"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
     <!-- Здесь будет описание выбранной записи -->
     <FrameLayout
@@ -17,6 +17,6 @@
         android:layout_width="0px"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?android:attr/detailsElementBackground"/>
+        android:background="?android:attr/detailsElementBackground" />
 
 </LinearLayout>

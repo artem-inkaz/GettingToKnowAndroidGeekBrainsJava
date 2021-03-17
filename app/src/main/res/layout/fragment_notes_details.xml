@@ -1,15 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".lesson6.NotesDetailsFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/notes_image"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/msc" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView_id_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Номер Записи"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_id_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="Номер Записи" />
+
+        <TextView
+            android:id="@+id/textView_date_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Дата создания"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_date_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="Дата создания" />
+
+        <TextView
+            android:id="@+id/textView_name_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Название города"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_name_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="Название города" />
+
+        <TextView
+            android:id="@+id/textView_description_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Описание"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_description_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="Описание" />
+
+        <TextView
+            android:id="@+id/textView_avatar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Герб"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notes_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/msc" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="410dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+</ScrollView>

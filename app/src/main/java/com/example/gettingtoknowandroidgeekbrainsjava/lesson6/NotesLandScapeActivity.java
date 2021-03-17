@@ -19,7 +19,7 @@ public class NotesLandScapeActivity extends AppCompatActivity {
             finish();
             return;
         }
-        if (savedInstanceState == null ) {
+        if (savedInstanceState == null) {
             // Если эта activity запускается первый раз (с каждым новой записью первый раз),
             // то перенаправим параметр фрагменту
             NotesDetailsFragment detailsFragment = new NotesDetailsFragment();

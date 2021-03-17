@@ -3,19 +3,17 @@ package com.example.gettingtoknowandroidgeekbrainsjava.lesson6;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 public class Notes implements Parcelable {
     private int id;
     private String name;
     private String description;
-    private Date dataCreate;
-    private Date dataUpdate;
-    private int imageIndex;
-    private String videoUrl;
+    private String dataCreate;
+    //    private Date dataUpdate;
+//    private int imageIndex;
+//    private String videoUrl;
     private int avatar;
 
-    public Notes(int id, String name, String description, Date dataCreate, int avatar) {
+    public Notes(int id, String name, String description, String dataCreate, int avatar) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,8 +25,8 @@ public class Notes implements Parcelable {
         id = in.readInt();
         name = in.readString();
         description = in.readString();
-        imageIndex = in.readInt();
-        videoUrl = in.readString();
+//        imageIndex = in.readInt();
+//        videoUrl = in.readString();
         avatar = in.readInt();
     }
 
@@ -54,8 +52,8 @@ public class Notes implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeInt(imageIndex);
-        dest.writeString(videoUrl);
+//        dest.writeInt(imageIndex);
+//        dest.writeString(videoUrl);
         dest.writeInt(avatar);
     }
 
@@ -71,7 +69,7 @@ public class Notes implements Parcelable {
         return description;
     }
 
-    public Date getDataCreate() {
+    public String getDataCreate() {
         return dataCreate;
     }
 
