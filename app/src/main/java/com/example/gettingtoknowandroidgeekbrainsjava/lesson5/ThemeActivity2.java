@@ -1,4 +1,4 @@
-package com.example.gettingtoknowandroidgeekbrainsjava.lesson4;
+package com.example.gettingtoknowandroidgeekbrainsjava.lesson5;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 
-public abstract class ThemeActivity extends AppCompatActivity {
+public abstract class ThemeActivity2 extends AppCompatActivity {
 
     // Имя настроек
     private static final String NAME_SHARED_PREFERENCE = "LOGIN";

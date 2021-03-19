@@ -21,4 +21,7 @@
     <dimen name="dimen_margin_start_12">12dp</dimen>
     <dimen name="dimen_width_btn_onc_land">347dp</dimen>
     <dimen name="dimen_height_btn_onc_land">47dp</dimen>
+    <dimen name="dimen_title_setting">32dp</dimen>
+    <dimen name="dimen_text_title">22sp</dimen>
+    <dimen name="dimen_margin_theme_setting">76dp</dimen>
 </resources>

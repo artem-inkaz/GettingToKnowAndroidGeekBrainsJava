@@ -1,6 +1,8 @@
-package com.example.gettingtoknowandroidgeekbrainsjava.lesson4;
+package com.example.gettingtoknowandroidgeekbrainsjava.lesson5;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,25 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson3.Calculator;
-import com.google.android.material.textfield.TextInputLayout;
 
-
-public class CalculatorActivity3 extends ThemeActivity {
+public class CalculatorActivity4 extends ThemeActivity2 implements Constants {
 
     private TextView resultField; // текстовое поле для вывода результата
-    private TextInputLayout mTextInputLayout;
+    private String textResult;
     private EditText numberField;   // поле для ввода числа
+
     private final static String KEY_CALCULATOR = "CALCULATOR";
     private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
     private final static String KEY_NUMBER_FIELD = "NUMBER_FIELD";
 
-   private Calculator calculator;
+    private Calculator calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +56,11 @@ public class CalculatorActivity3 extends ThemeActivity {
         initButtonMultClickListener();
         initButtonOnClickListener();
 
-        initButtonSetThemeClickListener(R.id.button_light_mode,AppThemeLight);
-        initButtonSetThemeClickListener(R.id.button_night_mode,AppThemeDark);
+        Button lightMode = findViewById(R.id.button_light_mode);
+        lightMode.setVisibility(View.GONE);
+        Button nightMode = findViewById(R.id.button_night_mode);
+        nightMode.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -87,16 +89,6 @@ public class CalculatorActivity3 extends ThemeActivity {
             if (calculator.getOperand() != null) {
                 resultField.setText(calculator.getSubStr());
             }
-        });
-    }
-
-    public void initButtonSetThemeClickListener(int id, final int codeStyle) {
-        Button btn = findViewById(id);
-        btn.setOnClickListener(v -> {
-            // сохраним настройки
-            setAppTheme(codeStyle);
-            // пересоздадим активити, чтобы тема применилась
-            recreate();
         });
     }
 
@@ -156,6 +148,7 @@ public class CalculatorActivity3 extends ThemeActivity {
     private void initButtonEqualClickListener() {
         Button btnEqual = findViewById(R.id.button_equal);
         btnEqual.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 resultField.setText(calculator.magicCalc().toString());
@@ -163,4 +156,44 @@ public class CalculatorActivity3 extends ThemeActivity {
         });
     }
 
+    // меню
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_calc_activity, menu);
+        return true;
+    }
+
+    // меню
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_settings:
+                // Получаем настройки темы приложения
+                int getTheme = getIntent().getExtras().getInt(TYPE_THEME);
+                // сохраним настройки
+                setAppTheme(getTheme);
+                // пересоздадим активити, чтобы тема применилась
+                recreate();
+                return true;
+            case R.id.action_recieve_data:
+                //получить данные из Intent
+                String getData = getIntent().getExtras().getString(KEY_NUMBER_FIELD_INTENT);
+                // Сохранить их в поле на экране
+                numberField.setText(getData);
+                calculator.operationRecieveDadta(getData);
+                resultField.setText(calculator.magicCalc().toString());
+                textResult = resultField.getText().toString();
+                return true;
+            case R.id.action_send_data:
+                Intent intentResult = new Intent();
+                intentResult.putExtra(KEY_NUMBER_FIELD_INTENT, textResult);
+                setResult(Activity.RESULT_OK, intentResult);
+                finish();
+                return true;
+        }
+        //headerView.setText(item.getTitle());
+        return super.onOptionsItemSelected(item);
+    }
 }
