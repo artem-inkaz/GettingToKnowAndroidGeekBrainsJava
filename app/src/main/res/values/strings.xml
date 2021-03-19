@@ -48,4 +48,6 @@
     <string name="text_title_setting">Основные настройки Калькулятора</string>
     <string name="text_title_theme_setting">Выберите тему:</string>
     <string name="text_title_formula_setting">Введите формулу для расчета</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

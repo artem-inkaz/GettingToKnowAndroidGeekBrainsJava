@@ -16,7 +16,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.R;
 public class SettingActivity extends ThemeActivity2 implements Constants {
 
     private int paramTheme; // параметр стиля темы
-    private EditText numberField_settings;   // поле для ввода числа
+    private EditText numberFieldSettings;   // поле для ввода числа
     private TextView textViewResult;
 
     private final static String KEY_RESULT_FIELD = "RESULT_FIELD";
@@ -36,7 +36,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
         initButtonSetThemeClickListener(R.id.button_light_mode_setting, R.id.button_night_mode_setting, AppThemeLight);
         initButtonSetThemeClickListener(R.id.button_night_mode_setting, R.id.button_light_mode_setting, AppThemeDark);
 
-        numberField_settings = findViewById(R.id.edit_text_input_setting);
+        numberFieldSettings = findViewById(R.id.edit_text_input_setting);
 
         recieveDataFromOtherApp();
 
@@ -51,7 +51,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString(KEY_RESULT_FIELD, String.valueOf(textViewResult.getText().toString()));
-        outState.putString(KEY_NUMBER_FIELD, String.valueOf(numberField_settings.getText().toString()));
+        outState.putString(KEY_NUMBER_FIELD, String.valueOf(numberFieldSettings.getText().toString()));
         super.onSaveInstanceState(outState);
     }
 
@@ -59,7 +59,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        numberField_settings.setText(savedInstanceState.getString(KEY_NUMBER_FIELD));
+        numberFieldSettings.setText(savedInstanceState.getString(KEY_NUMBER_FIELD));
         textViewResult.setText(savedInstanceState.getString(KEY_RESULT_FIELD));
     }
 
@@ -69,8 +69,8 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
         if (paramTheme == 1 || paramTheme == 0) {
             intent.putExtra(TYPE_THEME, paramTheme);
         }
-        if (numberField_settings.length() != 0) {
-            intent.putExtra(KEY_NUMBER_FIELD_INTENT, numberField_settings.getText().toString());
+        if (numberFieldSettings.length() != 0) {
+            intent.putExtra(KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
         }
         startActivity(intent);
     }
@@ -81,8 +81,8 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
         if (paramTheme == 1 || paramTheme == 0) {
             intent.putExtra(TYPE_THEME, paramTheme);
         }
-        if (numberField_settings.length() != 0) {
-            intent.putExtra(KEY_NUMBER_FIELD_INTENT, numberField_settings.getText().toString());
+        if (numberFieldSettings.length() != 0) {
+            intent.putExtra(KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
         }
 //        startActivity(intent);
         startActivityForResult(intent, REQUEST_CODE_SETTING_ACTIVITY);
@@ -138,7 +138,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
                 // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
                 Intent runSettings = new Intent(SettingActivity.this, CalculatorActivity4.class);
                 // Передача данных через интент
-                runSettings.putExtra(KEY_NUMBER_FIELD_INTENT, numberField_settings.getText().toString());
+                runSettings.putExtra(KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
                 // Метод стартует активити, указанную в интенте
 //                startActivity(runSettings);
             }
@@ -164,11 +164,11 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
     }
-
+    // закоментировали для выполнения поледующих лаб также закомментировали в манифесте несколько строчек
     private void recieveDataFromOtherApp() {
-        String value = getIntent().getExtras().getString("SEND_DATA_TO_OTHER_APP");
-        if (value != null) {
-            numberField_settings.setText(value);
-        }
+//        String value = getIntent().getExtras().getString("SEND_DATA_TO_OTHER_APP");
+//        if (value != null) {
+//            numberFieldSettings.setText(value);
+//        }
     }
 }

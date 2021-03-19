@@ -67,8 +67,8 @@ public class CalculatorActivity4 extends ThemeActivity2 implements Constants {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
 //        outState.putSerializable(KEY_CALCULATOR, calculator);
         outState.putParcelable(KEY_CALCULATOR, calculator);
-        outState.putString(KEY_RESULT_FIELD, String.valueOf(resultField.getText().toString()));
-        outState.putString(KEY_NUMBER_FIELD, String.valueOf(numberField.getText().toString()));
+        outState.putString(KEY_RESULT_FIELD, resultField.getText().toString());
+        outState.putString(KEY_NUMBER_FIELD, numberField.getText().toString());
         super.onSaveInstanceState(outState);
     }
 
