@@ -83,18 +83,13 @@ public class NotesFragment extends Fragment {
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    showPortNotesDetails(fi);
-//                    showNotesDetails(fi);
-                    //------------ закомментировали т.к .работаем через класс Notes
-//                    currentPosition = fi;
-                    // для сохранения состояния запоминания текущей позиции
-//                    showNotesDetails(currentPosition);
                     //---------------
                     currentNotes = new Notes(notesId,
                             getResources().getStringArray(R.array.notes_name)[notesId],
                             getResources().getStringArray(R.array.notes_description)[notesId],
                             getResources().getStringArray(R.array.notes_date_create)[notesId],
                             notesId);
+                    // для сохранения состояния запоминания текущей позиции
                     showNotesDetails(currentNotes);
 
                 }
@@ -102,36 +97,6 @@ public class NotesFragment extends Fragment {
         }
     }
 
-    // отображение портрет или landScape
-//    private void showNotesDetails(int fi) {
-//        if (isLandscape){
-//            showLandNotesDetails(fi);
-//        } else {
-//            showPortNotesDetails(fi);
-//        }
-//    }
-
-    // показываем запись в потретной ориентации
-//    private void showPortNotesDetails(int index) {
-//        // открываем вторую активити
-//        Intent intent = new Intent();
-//        intent.setClass(getActivity(), NotesLandScapeActivity.class);
-//        // и передаем туда параметры
-//        intent.putExtra(NotesDetailsFragment.ARG_INDEX, index);
-//        startActivity(intent);
-//    }
-
-    // Показать герб в ландшафтной ориентации
-//    private void showLandNotesDetails(int index){
-//        // Создаём новый фрагмент с текущей позицией для вывода записи
-//        NotesDetailsFragment notesDetailsFragment = NotesDetailsFragment.newInstance(index);
-//        // Выполняем транзакцию по замене фрагмента
-//        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.notes_details, notesDetailsFragment); // замена фрагмента
-//        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//        fragmentTransaction.commit();
-//    }
     private void showPortNotesDetails(Notes currentNotes) {
 
         // открываем вторую активити
@@ -156,19 +121,6 @@ public class NotesFragment extends Fragment {
         if (listener != null) {
             listener.onNotesSelected(currentNotes);
         }
-        // перенесли в NoteBookActivity благодаря interface OnNotesSelected
-        // Создаём новый фрагмент с текущей позицией для вывода записи
-//        NotesDetailsFragment notesDetailsFragment = NotesDetailsFragment.newInstance(currentNotes);
-//        // Выполняем транзакцию по замене фрагмента
-//        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.notes_details, notesDetailsFragment); // замена фрагмента
-////        fragmentTransaction.replace(R.id.notes_details, notesDetailsFragment, NotesDetailsFragment.ARG_TAG); // замена фрагмента
-//        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//        fragmentTransaction.commit();
-
-//        Fragment fragment =fragmentManager.findFragmentByTag(NotesDetailsFragment.ARG_TAG);
-//        if (fragment instanceof NotesDetailsFragment){  }
     }
 
     // activity создана, можно к ней обращаться. Выполним начальные действия
@@ -186,7 +138,6 @@ public class NotesFragment extends Fragment {
             currentNotes = savedInstanceState.getParcelable(CURRENT_NOTES);
         } else {
             // Если восстановить не удалось, то сделаем объект с первым индексом
-//            currentNotes = new Notes(0,getResources().getStringArray(R.array.notes[0]));
             currentNotes = new Notes(0,
                     getResources().getStringArray(R.array.notes_name)[0],
                     getResources().getStringArray(R.array.notes_description)[0],
@@ -196,7 +147,6 @@ public class NotesFragment extends Fragment {
 
         // Если можно нарисовать рядом герб, то сделаем это
         if (isLandscape) {
-//            showLandNotesDetails(0);
             showLandNotesDetails(currentNotes);
         }
     }

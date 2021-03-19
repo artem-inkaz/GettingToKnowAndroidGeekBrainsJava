@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 
-public class SettingActivity extends ThemeActivity2 implements Constants {
+public class SettingActivity extends ThemeActivity2 {
 
     private int paramTheme; // параметр стиля темы
     private EditText numberFieldSettings;   // поле для ввода числа
@@ -67,10 +67,10 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     private void launchMainActivity() {
         Intent intent = new Intent(SettingActivity.this, CalculatorActivity4.class);
         if (paramTheme == 1 || paramTheme == 0) {
-            intent.putExtra(TYPE_THEME, paramTheme);
+            intent.putExtra(Constants.TYPE_THEME, paramTheme);
         }
         if (numberFieldSettings.length() != 0) {
-            intent.putExtra(KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
+            intent.putExtra(Constants.KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
         }
         startActivity(intent);
     }
@@ -79,13 +79,13 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     private void recieveDataFromCalculator() {
         Intent intent = new Intent(SettingActivity.this, CalculatorActivity4.class);
         if (paramTheme == 1 || paramTheme == 0) {
-            intent.putExtra(TYPE_THEME, paramTheme);
+            intent.putExtra(Constants.TYPE_THEME, paramTheme);
         }
         if (numberFieldSettings.length() != 0) {
-            intent.putExtra(KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
+            intent.putExtra(Constants.KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
         }
 //        startActivity(intent);
-        startActivityForResult(intent, REQUEST_CODE_SETTING_ACTIVITY);
+        startActivityForResult(intent, Constants.REQUEST_CODE_SETTING_ACTIVITY);
     }
 
     // кнопки темная и светлая темы
@@ -120,7 +120,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
                 // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
                 Intent runSettings = new Intent(SettingActivity.this, CalculatorActivity4.class);
                 // Передача данных через интент
-                runSettings.putExtra(TYPE_THEME, paramTheme);
+                runSettings.putExtra(Constants.TYPE_THEME, paramTheme);
                 // Метод стартует активити, указанную в интенте
 //                startActivity(runSettings);
             }
@@ -138,7 +138,7 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
                 // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
                 Intent runSettings = new Intent(SettingActivity.this, CalculatorActivity4.class);
                 // Передача данных через интент
-                runSettings.putExtra(KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
+                runSettings.putExtra(Constants.KEY_NUMBER_FIELD_INTENT, numberFieldSettings.getText().toString());
                 // Метод стартует активити, указанную в интенте
 //                startActivity(runSettings);
             }
@@ -151,10 +151,10 @@ public class SettingActivity extends ThemeActivity2 implements Constants {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE_SETTING_ACTIVITY) {
+        if (requestCode == Constants.REQUEST_CODE_SETTING_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    textViewResult.setText(data.getStringExtra(KEY_NUMBER_FIELD_INTENT));
+                    textViewResult.setText(data.getStringExtra(Constants.KEY_NUMBER_FIELD_INTENT));
                 }
             }
         }
