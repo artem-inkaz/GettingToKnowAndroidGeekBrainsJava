@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/popup_title_description"
+        android:id="@+id/item1_popup_open_detail"
+        android:orderInCategory="10"/>
+    <item
+        android:title="@string/popup_title_update"
+        android:id="@+id/item1_popup_update"
+        android:orderInCategory="10"/>
+    <item
+        android:title="@string/popup_title_delete"
+        android:id="@+id/item2_popup_delete"
+        android:orderInCategory="20"/>
+    <item
+        android:title="@string/popup_title_favourite"
+        android:id="@+id/item3_popup_add_favourite"
+        android:orderInCategory="20"/>
+    <item
+        android:title="@string/popup_title_share"
+        android:id="@+id/item3_popup_share"
+        android:orderInCategory="20"/>
+</menu>

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_mode">#F9DA22</color>
     <color name="black_mode">#FF000000</color>
+    <color name="bacground_bottom">#009688</color>
 </resources>
