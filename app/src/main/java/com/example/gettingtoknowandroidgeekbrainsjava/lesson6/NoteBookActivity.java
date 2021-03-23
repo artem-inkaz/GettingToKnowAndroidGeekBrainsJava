@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 
-public class NoteBookActivity extends AppCompatActivity implements NotesFragment.OnNotesSelected {
+public class NoteBookActivity extends AppCompatActivity implements OnNotesSelected {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class NoteBookActivity extends AppCompatActivity implements NotesFragment
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
 //        Fragment fragment =fragmentManager.findFragmentByTag(NotesDetailsFragment.ARG_TAG);
-//        if (fragment instanceof NotesDetailsFragment){}
+//        if (fragment instanceof NotesDetailsFragment){
+//        }
     }
 }

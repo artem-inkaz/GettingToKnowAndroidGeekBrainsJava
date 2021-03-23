@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_geekbrains_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".lesson6.NotesLandScapeActivity"></activity>
+        <activity
+            android:name=".lesson7.NavigationNoteBookActivity"
+            android:label="@string/title_activity_navigation_note_book"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".lesson6.NotesLandScapeActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".lesson6.NoteBookActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

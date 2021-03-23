@@ -15,7 +15,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson3.Calculator;
 
-public class CalculatorActivity4 extends ThemeActivity2 implements Constants {
+public class CalculatorActivity4 extends ThemeActivity2  {
 
     private TextView resultField; // текстовое поле для вывода результата
     private String textResult;
@@ -171,7 +171,7 @@ public class CalculatorActivity4 extends ThemeActivity2 implements Constants {
         switch (id) {
             case R.id.action_settings:
                 // Получаем настройки темы приложения
-                int getTheme = getIntent().getExtras().getInt(TYPE_THEME);
+                int getTheme = getIntent().getExtras().getInt(Constants.TYPE_THEME);
                 // сохраним настройки
                 setAppTheme(getTheme);
                 // пересоздадим активити, чтобы тема применилась
@@ -179,7 +179,7 @@ public class CalculatorActivity4 extends ThemeActivity2 implements Constants {
                 return true;
             case R.id.action_recieve_data:
                 //получить данные из Intent
-                String getData = getIntent().getExtras().getString(KEY_NUMBER_FIELD_INTENT);
+                String getData = getIntent().getExtras().getString(Constants.KEY_NUMBER_FIELD_INTENT);
                 // Сохранить их в поле на экране
                 numberField.setText(getData);
                 calculator.operationRecieveDadta(getData);
@@ -188,7 +188,7 @@ public class CalculatorActivity4 extends ThemeActivity2 implements Constants {
                 return true;
             case R.id.action_send_data:
                 Intent intentResult = new Intent();
-                intentResult.putExtra(KEY_NUMBER_FIELD_INTENT, textResult);
+                intentResult.putExtra(Constants.KEY_NUMBER_FIELD_INTENT, textResult);
                 setResult(Activity.RESULT_OK, intentResult);
                 finish();
                 return true;

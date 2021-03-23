@@ -69,25 +69,6 @@ public class NotesDetailsFragment extends Fragment {
         // Таким способом можно получить головной элемент из макета
         View view = inflater.inflate(R.layout.fragment_notes_details, container, false);
 
-        // найти в контейнере элемент-изображение
-//        AppCompatImageView imageNotes = view.findViewById(R.id.notes_image);
-//        // Получить из ресурсов массив указателей на изображения гербов
-//        TypedArray images = getResources().obtainTypedArray(R.array.notes_imgs);
-//        // Выбрать по индексу подходящий
-////        imageNotes.setImageResource(images.getResourceId(index, -1));
-//        imageNotes.setImageResource(images.getResourceId(currentNotes.getAvatar(), -1));
-//        // устанавливаем поля для вывода детальной информации
-//        TextView notesIdView = view.findViewById(R.id.textView_id_note);
-//        notesIdView.setText(Integer.toString(currentNotes.getId()+1));
-//
-//        TextView notesNameView = view.findViewById(R.id.textView_name_note);
-//        notesNameView.setText(currentNotes.getName());
-//
-//        TextView notesDescriptionView = view.findViewById(R.id.textView_description_note);
-//        notesDescriptionView.setText(currentNotes.getDescription());
-//
-//        TextView notesDateView = view.findViewById(R.id.textView_date_note);
-//        notesDateView.setText(currentNotes.getDataCreate());
         return view;
     }
 
