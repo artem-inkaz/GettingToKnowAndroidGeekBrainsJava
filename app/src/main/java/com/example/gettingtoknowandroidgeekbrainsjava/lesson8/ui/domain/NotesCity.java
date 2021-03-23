@@ -10,7 +10,7 @@ public class NotesCity {
     //    private Date dataUpdate;
     private String imageUrl;
 //    private String videoUrl;
-@DrawableRes private int avatar;
+    private int avatar;
 
     public NotesCity(int id, String name, String description, String dataCreate, String imageUrl, int avatar) {
         this.id = id;
