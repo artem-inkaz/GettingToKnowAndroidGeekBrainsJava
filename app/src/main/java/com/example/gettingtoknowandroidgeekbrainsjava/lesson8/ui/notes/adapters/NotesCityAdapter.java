@@ -1,13 +1,15 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.adapters;
 
 import android.annotation.SuppressLint;
-import android.preference.PreferenceManager;
+import android.os.Build;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
@@ -46,6 +48,7 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
         holder.getNameNote().setText(item.getName());
         holder.getDateNote().setText(item.getDataCreate());
         holder.getAvatarNote().setImageResource(item.getAvatar());
+
     }
 
     @Override
@@ -76,13 +79,14 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
 
         public NotesCityViewHolder(@NonNull View itemView) {
             super(itemView);
-//            registerContextMenu(itemView);
+
             idNote = itemView.findViewById(R.id.textView_id_notes_city);
             nameNote = itemView.findViewById(R.id.textView_name_notes_city);
             dateNote = itemView.findViewById(R.id.textView_data_notes_city);
             avatarNote = itemView.findViewById(R.id.imageView_avatar_notes_city);
 
             itemView.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View v) {
 

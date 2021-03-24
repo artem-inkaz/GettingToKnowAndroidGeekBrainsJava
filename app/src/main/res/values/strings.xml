@@ -73,4 +73,11 @@
     <string name="popup_title_share">Поделиться</string>
     <string name="toolbar_title_search">Поиск</string>
     <string name="site_404">404. Страница в разработке</string>
+    <string name="text_id_note">#1</string>
+    <string name="text_name_note">Москва</string>
+    <string name="text_date_create_note">Дата записи</string>
+    <string name="text_title_id_note">Номер Записи</string>
+    <string name="text_name_note_title">Название города</string>
+    <string name="text_description_title">Описание</string>
+    <string name="text_armof_note_title">Герб</string>
 </resources>

@@ -89,13 +89,12 @@ public class NoteDetailFragment extends Fragment {
 //                    idNote.setText(Integer.toString(notesDetailViewModel.getNotesCity().getId()));
 //                });
         notesViewModel.getNotesCityLiveData()
-                    .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
-                        @Override
-                        public void onChanged(List<NotesCity> notesCityList) {
-                            idNote.setText(Integer.toString(notesCityList.hashCode()));
-                        }
-                    });
-//        idNote.setText(Integer.toString(notesViewModel.getNotesCity().getId()));
+                .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
+                    @Override
+                    public void onChanged(List<NotesCity> notesCityList) {
+//                            idNote.setText(Integer.toString(notesCityList.hashCode()));
+                    }
+                });
 
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(notesCity.getImageUrl())

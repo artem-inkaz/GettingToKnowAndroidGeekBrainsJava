@@ -3,9 +3,13 @@ package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -105,4 +109,25 @@ public class NotesCityFragment extends Fragment {
         // Определение, можно ли будет расположить рядом герб в другом фрагменте
         Constants.isLandscapeCity = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
+
+//    @Override
+//    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//        MenuInflater inflater = requireActivity().getMenuInflater();
+//        inflater.inflate(R.menu.popup, menu);
+//    }
+//
+//    @Override
+//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//        int position = notesCityAdapter.getMenuPosition();
+//        switch(item.getItemId()) {
+//            case R.id.item1_popup_open_detail:
+//                Toast.makeText(getContext(), "Chosen popup open detail", Toast.LENGTH_SHORT).show();
+//                return true;
+//            case R.id.item1_popup_update:
+//                Toast.makeText(getContext(), "Chosen popup update", Toast.LENGTH_SHORT).show();
+//                return true;
+//        }
+//        return super.onContextItemSelected(item);
+//    }
 }
