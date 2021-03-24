@@ -16,15 +16,28 @@ public class NotesViewModel extends ViewModel {
 
     private final MutableLiveData<List<NotesCity>> notesCityLiveData = new MutableLiveData<>();
 
-    public void fetchNotes(){
+    public void fetchNotes() {
         notesCityLiveData.setValue(notesRepository.getNotesCity());
 
     }
 
-    public LiveData<List<NotesCity>> getNotesCityLiveData(){ return  notesCityLiveData;}
+    public LiveData<List<NotesCity>> getNotesCityLiveData() {
+        return notesCityLiveData;
+    }
 
     @Override
     protected void onCleared() {
         super.onCleared();
+    }
+
+    //--------------------------------------------------------------------------------------
+    private NotesCity notesCity;
+
+    public void setNotesCity(NotesCity notesCity) {
+        this.notesCity = notesCity;
+    }
+
+    public NotesCity getNotesCity() {
+        return notesCity;
     }
 }

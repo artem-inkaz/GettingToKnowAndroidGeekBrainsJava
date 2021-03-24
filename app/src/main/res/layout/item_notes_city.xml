@@ -27,15 +27,17 @@
 
         <TextView
             android:id="@+id/textView_name_notes_city"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_min"
             android:layout_marginTop="@dimen/margin_main"
-            android:layout_marginLeft="56dp"
+            android:gravity="center"
             android:text="Москва"
+            android:textAlignment="textStart"
             android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/textView_id_notes_city"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:ignore="RtlCompat" />
 
         <ImageView
             android:id="@+id/imageView_avatar_notes_city"
