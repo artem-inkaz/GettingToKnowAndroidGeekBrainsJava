@@ -15,4 +15,6 @@ public class Constants {
   public static boolean IsAddFragment;
   public static boolean IsBackAsRemove;
   public static boolean IsDeleteBeforeAdd;
+
+  public static boolean isLandscapeCity;
 }

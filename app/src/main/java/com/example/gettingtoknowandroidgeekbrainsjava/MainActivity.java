@@ -16,6 +16,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson4.CalculatorActivity
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson5.SettingActivity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NoteBookActivity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.NavigationNoteBookActivity;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.NavigationNoteBookActivity2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonLesson5 = findViewById(R.id.button_lesson_5);
         Button buttonLesson6 = findViewById(R.id.button_lesson_6);
         Button buttonLesson7 = findViewById(R.id.button_lesson_7);
-//        Button buttonLesson8 = findViewById(R.id.button_lesson_8);
+        Button buttonLesson8 = findViewById(R.id.button_lesson_8);
 //        Button buttonLesson9 = findViewById(R.id.button_lesson_9);
 //        Button buttonLesson10 = findViewById(R.id.button_lesson_10);
 //        Button buttonLesson11 = findViewById(R.id.button_lesson_11);
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLesson5.setOnClickListener(v -> launchCalculatorActivity4());
         buttonLesson6.setOnClickListener(v -> launchCalculatorActivity5());
         buttonLesson7.setOnClickListener(v -> launchCalculatorActivity6());
+        buttonLesson8.setOnClickListener(v -> launchCalculatorActivity7());
     }
 
     private void launchMainActivity1() {
@@ -79,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchCalculatorActivity6() {
         Intent intent = new Intent(MainActivity.this, NavigationNoteBookActivity.class);
+        startActivity(intent);
+    }
+    private void launchCalculatorActivity7() {
+        Intent intent = new Intent(MainActivity.this, NavigationNoteBookActivity2.class);
         startActivity(intent);
     }
 }
