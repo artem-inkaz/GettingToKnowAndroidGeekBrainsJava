@@ -18,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
@@ -27,6 +29,8 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SettingFragment
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SignInFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesCityFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModel;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.adapters.NotesCityAdapter;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.NoteDetailFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -35,6 +39,10 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 public class NavigationNoteBookActivity2 extends AppCompatActivity implements ChangeFragment {
+
+    private NotesViewModel notesViewModel;
+
+    private NotesCityAdapter notesCityAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,21 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
             addFragmentBottom(new NotesCityFragment(), "NotesFragment");
         }
 
+        notesViewModel =
+                new ViewModelProvider(this).get(NotesViewModel.class);
+
         initView();
+
+//        notesViewModel.getNewNoteAddedLiveData()
+//                .observe(getViewLifecycleOwner(), new Observer<NotesCity>() {
+//                    @Override
+//                    public void onChanged(NotesCity note) {
+//                        notesCityAdapter.addItem(note);
+//                        notesCityAdapter.notifyItemInserted(notesCityAdapter.getItemCount() - 1);
+//                        recyclerView.smoothScrollToPosition(notesCityAdapter.getItemCount() - 1);
+//                    }
+//                });
+
     }
 
     private void initView() {
@@ -121,6 +143,7 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                         setTitle("Избранные записи");
                         break;
                     case R.id.action_add:
+//                        notesViewModel.addNewNote();
 //                        addFragmentBottom(new MainFragment(), "MainFragment");
                         break;
                 }

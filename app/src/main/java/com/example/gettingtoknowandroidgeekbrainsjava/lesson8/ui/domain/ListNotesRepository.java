@@ -58,4 +58,25 @@ public class ListNotesRepository implements NotesRepository {
 
         return data;
     }
+
+    @Override
+    public void clearNotes() {
+
+    }
+
+    @Override
+    public void addNewNote() {
+
+        NotesCity notesCity = new NotesCity(1, "Москва",
+                "г. Москва. Cтолица России. " +
+                        "Историческая столица Великого" +
+                        "княжества Московского, Русского царства, Российской империи" +
+                        "(в 1728—1730 годах), Советской России и СССР. Город-герой",
+                "01.03.2021 г.",
+                "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
+                R.drawable.msc);
+
+    }
+
+
 }

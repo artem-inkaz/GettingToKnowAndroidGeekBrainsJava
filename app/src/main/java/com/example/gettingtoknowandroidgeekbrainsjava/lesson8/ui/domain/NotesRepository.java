@@ -5,5 +5,9 @@ import java.util.List;
 public interface NotesRepository {
 
     List<NotesCity> getNotesCity();
+
+    void clearNotes();
+
+    void addNewNote();
 //    List<NotesCity> getNotesDetailCity();
 }

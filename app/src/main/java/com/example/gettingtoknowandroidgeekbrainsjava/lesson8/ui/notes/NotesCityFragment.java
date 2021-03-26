@@ -2,6 +2,7 @@ package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,8 +26,6 @@ import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.adapters.NotesCityAdapter;
-import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.NoteDetailFragment;
-import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.NotesDetailViewModel;
 
 import java.util.List;
 
@@ -39,6 +39,8 @@ public class NotesCityFragment extends Fragment {
     private ChangeFragment changeFragment;
 //    private boolean isLandscape;
 
+    private int contextMenuItemPosition;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,12 +49,9 @@ public class NotesCityFragment extends Fragment {
         notesViewModel =
                 new ViewModelProvider(this).get(NotesViewModel.class);
 
-//        notesDetailViewModel =
-//                new ViewModelProvider(this).get(NotesDetailViewModel.class);
-
         notesViewModel.fetchNotes();
 
-        notesCityAdapter = new NotesCityAdapter();
+        notesCityAdapter = new NotesCityAdapter(this);
         notesCityAdapter.setNoteClicked(new NotesCityAdapter.OnNoteClicked() {
             @Override
             public void onNoteClicked(NotesCity notesCity) {
@@ -60,6 +59,19 @@ public class NotesCityFragment extends Fragment {
                 changeFragment.gotoFragmentNotesCityDetails(notesCity);
                 notesViewModel.setNotesCity(notesCity);
 //               notesDetailViewModel.setNotesCity(notesCity);
+            }
+        });
+
+        notesCityAdapter.setNoteLongClicked(new NotesCityAdapter.OnNoteLongClicked() {
+            @Override
+            public void onNoteLongClicked(View itemView, int position, NotesCity notesCity) {
+                contextMenuItemPosition = position;
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    itemView.showContextMenu(10, 10);
+                } else {
+                    itemView.showContextMenu();
+                }
             }
         });
     }
@@ -74,6 +86,8 @@ public class NotesCityFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ProgressBar progressBar = view.findViewById(R.id.progress);
+
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_container);
         recyclerView.setAdapter(notesCityAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
@@ -82,9 +96,50 @@ public class NotesCityFragment extends Fragment {
                 .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
                     @Override
                     public void onChanged(List<NotesCity> notesCities) {
-                        notesCityAdapter.clear();
-                        notesCityAdapter.addItems(notesCities);
+                        notesCityAdapter.setItems(notesCities);
+//                        notesCityAdapter.clear();
+//                        notesCityAdapter.addItems(notesCities);
                         notesCityAdapter.notifyDataSetChanged();
+                    }
+                });
+
+        notesViewModel.getProgressLiveData()
+                .observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean isVisible) {
+                        if (isVisible) {
+                            progressBar.setVisibility(View.VISIBLE);
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
+                });
+
+        notesViewModel.getNewNoteAddedLiveData()
+                .observe(getViewLifecycleOwner(), new Observer<NotesCity>() {
+                    @Override
+                    public void onChanged(NotesCity note) {
+                        notesCityAdapter.addItem(note);
+                        notesCityAdapter.notifyItemInserted(notesCityAdapter.getItemCount() - 1);
+                        recyclerView.smoothScrollToPosition(notesCityAdapter.getItemCount() - 1);
+                    }
+                });
+
+        notesViewModel.getRemovedItemPositionLiveData()
+                .observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer position) {
+                        notesCityAdapter.removeAtPosition(position);
+                        notesCityAdapter.notifyItemRemoved(position);
+                    }
+                });
+
+        notesViewModel.getUpdateItemPositionLiveData()
+                .observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer position) {
+                        notesCityAdapter.updatePosition(position);
+                        notesCityAdapter.notifyItemChanged(position);
                     }
                 });
     }
@@ -110,24 +165,30 @@ public class NotesCityFragment extends Fragment {
         Constants.isLandscapeCity = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-//    @Override
-//    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        MenuInflater inflater = requireActivity().getMenuInflater();
-//        inflater.inflate(R.menu.popup, menu);
-//    }
-//
-//    @Override
-//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = requireActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.popup, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
 //        int position = notesCityAdapter.getMenuPosition();
-//        switch(item.getItemId()) {
-//            case R.id.item1_popup_open_detail:
-//                Toast.makeText(getContext(), "Chosen popup open detail", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.item1_popup_update:
-//                Toast.makeText(getContext(), "Chosen popup update", Toast.LENGTH_SHORT).show();
-//                return true;
-//        }
-//        return super.onContextItemSelected(item);
-//    }
+        switch(item.getItemId()) {
+            case R.id.item1_popup_open_detail:
+                Toast.makeText(getContext(), "Chosen popup open detail", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item1_popup_update:
+                notesViewModel.updatePosition(contextMenuItemPosition);
+                Toast.makeText(getContext(), "Chosen popup update", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item2_popup_delete:
+//                contextMenuItemPosition
+                notesViewModel.deleteAtPosition(contextMenuItemPosition);
+//                Toast.makeText(getContext(), "Chosen popup deleted "+contextMenuItemPosition, Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
 }
