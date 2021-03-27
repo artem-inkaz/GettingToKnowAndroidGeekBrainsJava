@@ -32,6 +32,8 @@ import java.util.List;
 public class NotesCityFragment extends Fragment {
 
     private NotesViewModel notesViewModel;
+
+    private NotesCity notesCityContext;
 //    private NotesDetailViewModel notesDetailViewModel;
 
     private NotesCityAdapter notesCityAdapter;
@@ -66,7 +68,7 @@ public class NotesCityFragment extends Fragment {
             @Override
             public void onNoteLongClicked(View itemView, int position, NotesCity notesCity) {
                 contextMenuItemPosition = position;
-
+                notesCityContext = notesCity;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     itemView.showContextMenu(10, 10);
                 } else {
@@ -177,10 +179,13 @@ public class NotesCityFragment extends Fragment {
 //        int position = notesCityAdapter.getMenuPosition();
         switch(item.getItemId()) {
             case R.id.item1_popup_open_detail:
-                Toast.makeText(getContext(), "Chosen popup open detail", Toast.LENGTH_SHORT).show();
+                changeFragment.gotoFragmentNotesCityDetails(notesCityContext);
+                notesViewModel.setNotesCity(notesCityContext);
+//                Toast.makeText(getContext(), "Chosen popup open detail", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item1_popup_update:
                 notesViewModel.updatePosition(contextMenuItemPosition);
+                changeFragment.gotoFragmentNotesCityUpdate(notesCityContext);
                 Toast.makeText(getContext(), "Chosen popup update", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item2_popup_delete:

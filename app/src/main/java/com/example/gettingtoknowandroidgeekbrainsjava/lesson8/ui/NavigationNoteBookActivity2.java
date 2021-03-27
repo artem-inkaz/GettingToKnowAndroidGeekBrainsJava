@@ -32,6 +32,8 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesCity
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModel;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.adapters.NotesCityAdapter;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.NoteDetailFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.AddNewFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.update.UpdateNoteFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,9 +42,8 @@ import java.util.List;
 
 public class NavigationNoteBookActivity2 extends AppCompatActivity implements ChangeFragment {
 
-    private NotesViewModel notesViewModel;
-
-    private NotesCityAdapter notesCityAdapter;
+//    private NotesViewModel notesViewModel;
+//    private NotesCityAdapter notesCityAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,8 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
             addFragmentBottom(new NotesCityFragment(), "NotesFragment");
         }
 
-        notesViewModel =
-                new ViewModelProvider(this).get(NotesViewModel.class);
+//        notesViewModel =
+//                new ViewModelProvider(this).get(NotesViewModel.class);
 
         initView();
 
@@ -143,6 +144,8 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                         setTitle("Избранные записи");
                         break;
                     case R.id.action_add:
+                        addFragmentBottom(new AddNewFragment(), "AddNewFragment");
+                        setTitle("Добавить новую запись");
 //                        notesViewModel.addNewNote();
 //                        addFragmentBottom(new MainFragment(), "MainFragment");
                         break;
@@ -302,11 +305,20 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
 
     @Override
     public void gotoFragmentNotesCityDetails(NotesCity notesCity) {
-//        addFragmentPort(new NoteDetailFragment(), "NoteDetailFragment");
         if (Constants.isLandscapeCity) {
             addFragmentLandscape(new NoteDetailFragment(notesCity), "NoteDetailFragment");
         } else {
             addFragmentPort(new NoteDetailFragment(notesCity), "NoteDetailFragment");
+        }
+    }
+
+    @Override
+    public void gotoFragmentNotesCityUpdate(NotesCity notesCity) {
+//        addFragmentPort(new NoteDetailFragment(), "NoteDetailFragment");
+        if (Constants.isLandscapeCity) {
+            addFragmentLandscape(new UpdateNoteFragment(notesCity), "NoteUpdateFragment");
+        } else {
+            addFragmentPort(new UpdateNoteFragment(notesCity), "NoteUpdateFragment");
         }
     }
 }

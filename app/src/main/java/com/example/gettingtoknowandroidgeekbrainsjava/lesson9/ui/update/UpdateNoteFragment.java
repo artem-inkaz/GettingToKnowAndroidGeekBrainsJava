@@ -1,14 +1,30 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.update;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
+
+import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,8 +42,16 @@ public class UpdateNoteFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private NotesCity notesCity;
+    private DatePicker mDatePicker;
+    private ChangeFragment changeFragment;
+
     public UpdateNoteFragment() {
         // Required empty public constructor
+    }
+
+    public UpdateNoteFragment(NotesCity notesCity) {
+        this.notesCity = notesCity;
     }
 
     /**
@@ -62,5 +86,78 @@ public class UpdateNoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_update_note, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        EditText idNote = view.findViewById(R.id.edit_text_id_note_city_update);
+        EditText nameNote = view.findViewById(R.id.edit_text_name_note_city_update);
+        EditText dateNote = view.findViewById(R.id.edit_text_date_note_city_update);
+        ImageView avatarNote = view.findViewById(R.id.notes_image_city_update);
+        EditText descriptionNote = view.findViewById(R.id.edit_text_description_title_city_update);
+        ImageView imageNote = view.findViewById(R.id.imageView_image_note_city_update);
+
+//        notesViewModel.getNotesCityLiveData()
+//                .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
+//                    @Override
+//                    public void onChanged(List<NotesCity> notesCityList) {
+////                            idNote.setText(Integer.toString(notesCityList.hashCode()));
+//                    }
+//                });
+
+        Glide.with(Objects.requireNonNull(getContext()))
+                .load(notesCity.getImageUrl())
+                .into(imageNote);
+
+        idNote.setText(Integer.toString(notesCity.getId()));
+        nameNote.setText(notesCity.getName());
+        dateNote.setText(notesCity.getDataCreate());
+        avatarNote.setImageResource(notesCity.getAvatar());
+        descriptionNote.setText(notesCity.getDescription());
+
+        DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_update);
+
+        Calendar today = Calendar.getInstance();
+
+        mDatePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+                today.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+
+                    @Override
+                    public void onDateChanged(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                        Toast.makeText(requireContext(),
+                                "onDateChanged", Toast.LENGTH_SHORT).show();
+
+                        dateNote.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
+                        mDatePicker.setVisibility(View.GONE);
+                    }
+                });
+
+        ImageView imageViewCalendar = view.findViewById(R.id.imageView_calendar_update);
+        imageViewCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatePicker.setVisibility(View.VISIBLE);
+                dateNote.setText(new StringBuilder()
+                        // Месяц отсчитывается с 0, поэтому добавляем 1
+                        .append(mDatePicker.getDayOfMonth()).append(".")
+                        .append(mDatePicker.getMonth() + 1).append(".")
+                        .append(mDatePicker.getYear()));
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        changeFragment = (ChangeFragment) getContext();
+    }
+
+    @Override
+    public void onDetach() {
+        changeFragment = null;
+        super.onDetach();
     }
 }

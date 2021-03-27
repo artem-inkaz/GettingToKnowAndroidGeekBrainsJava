@@ -84,10 +84,6 @@ public class NoteDetailFragment extends Fragment {
         TextView descriptionNote = view.findViewById(R.id.textView_description_note_city);
         ImageView imageNote = view.findViewById(R.id.imageView_image_note_city);
 
-//        notesDetailViewModel.getNotesCityDetailLiveData()
-//                .observe(getViewLifecycleOwner(), (List<NotesCity> notesCities) -> {
-//                    idNote.setText(Integer.toString(notesDetailViewModel.getNotesCity().getId()));
-//                });
         notesViewModel.getNotesCityLiveData()
                 .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
                     @Override
@@ -99,7 +95,7 @@ public class NoteDetailFragment extends Fragment {
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(notesCity.getImageUrl())
                 .into(imageNote);
-//       idNote.setText(Integer.toString(notesDetailViewModel.));
+
         idNote.setText(Integer.toString(notesCity.getId()));
         nameNote.setText(notesCity.getName());
         dateNote.setText(notesCity.getDataCreate());

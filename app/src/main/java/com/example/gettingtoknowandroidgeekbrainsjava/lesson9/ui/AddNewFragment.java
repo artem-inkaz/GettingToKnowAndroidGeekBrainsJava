@@ -1,14 +1,25 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +36,9 @@ public class AddNewFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private DatePicker mDatePicker;
+    private ChangeFragment changeFragment;
 
     public AddNewFragment() {
         // Required empty public constructor
@@ -62,5 +76,43 @@ public class AddNewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_new, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        EditText dateNote = view.findViewById(R.id.edit_text_date_note_city_add);
+
+        @SuppressLint("CutPasteId") DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_add);
+
+        Calendar today = Calendar.getInstance();
+
+        mDatePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+                today.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+
+                    @Override
+                    public void onDateChanged(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                        Toast.makeText(requireContext(),
+                                "onDateChanged", Toast.LENGTH_SHORT).show();
+
+                        dateNote.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
+                        mDatePicker.setVisibility(View.GONE);
+                    }
+                });
+
+        ImageView imageViewCalendar = view.findViewById(R.id.imageView_calendar_add);
+        imageViewCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatePicker.setVisibility(View.VISIBLE);
+                dateNote.setText(new StringBuilder()
+                        // Месяц отсчитывается с 0, поэтому добавляем 1
+                        .append(mDatePicker.getDayOfMonth()).append(".")
+                        .append(mDatePicker.getMonth() + 1).append(".")
+                        .append(mDatePicker.getYear()));
+            }
+        });
     }
 }

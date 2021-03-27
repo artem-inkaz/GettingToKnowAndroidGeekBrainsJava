@@ -6,4 +6,5 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCit
 
 public interface ChangeFragment {
     void gotoFragmentNotesCityDetails(NotesCity notesCity);
+    void gotoFragmentNotesCityUpdate(NotesCity notesCity);
 }

@@ -16,9 +16,9 @@
             android:id="@+id/imageView_calendar_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
-            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintHorizontal_bias="0.633"
             app:layout_constraintStart_toEndOf="@+id/textView_date_title_city"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_menu_my_calendar" />
@@ -40,6 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_min"
             android:textSize="16sp"
+            android:hint="Введите номер записи"
+            android:textColorHint="@color/color_hint"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0.041"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_min"
             android:textSize="16sp"
+            android:hint="Введите дату"
+            android:textColorHint="@color/color_hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,14 +95,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_min"
             android:textSize="16sp"
+            android:hint="Введите название"
+            android:textColorHint="@color/color_hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_name_title_city"
             tools:text="Название города" />
 
-        <EditText
-            android:id="@+id/edit_text_description_title_city_add"
+        <TextView
+            android:id="@+id/textView_description_title_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_min"
@@ -110,16 +116,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_name_note_city_add" />
 
-        <TextView
-            android:id="@+id/textView_description_note_city"
+        <EditText
+            android:id="@+id/edit_text_description_note_city_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_min"
             android:textSize="16sp"
+            android:hint="Введите описание"
+            android:textColorHint="@color/color_hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintHorizontal_bias="0.03"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_text_description_title_city_add"
+            app:layout_constraintTop_toBottomOf="@id/textView_description_title_city"
             tools:text="Описание" />
 
         <TextView
@@ -134,7 +142,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline_end"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_description_note_city" />
+            app:layout_constraintTop_toBottomOf="@id/edit_text_description_note_city_add" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/notes_image_city_add"
@@ -146,7 +154,7 @@
             app:layout_constraintTop_toBottomOf="@id/textView_avatar_title_city" />
 
         <DatePicker
-            android:id="@+id/datePicker_note_city_detail"
+            android:id="@+id/datePicker_note_city_add"
             android:layout_width="303dp"
             android:layout_height="375dp"
             android:layout_centerHorizontal="true"
