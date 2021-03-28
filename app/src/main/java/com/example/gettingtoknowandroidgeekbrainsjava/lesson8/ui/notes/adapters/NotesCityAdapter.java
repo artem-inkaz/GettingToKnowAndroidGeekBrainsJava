@@ -30,12 +30,12 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
         this.fragment = fragment;
     }
 
-    public void setItems(List<NotesCity> toSet){
+    public void setItems(List<NotesCity> toSet) {
         items.clear();
         items.addAll(toSet);
     }
 
-    public void addItem(NotesCity notesCity){
+    public void addItem(NotesCity notesCity) {
         items.add(notesCity);
     }
 
@@ -44,7 +44,7 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
 //    }
 
     public void removeAtPosition(int position) {
-         items.remove(position);
+        items.remove(position);
     }
 
     public void clear() {
@@ -94,7 +94,7 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
     }
 
     public void updatePosition(Integer position) {
- //       items.re
+        //       items.re
     }
 
     public interface OnNoteClicked {

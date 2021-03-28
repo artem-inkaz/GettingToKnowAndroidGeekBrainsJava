@@ -80,4 +80,8 @@
     <string name="text_name_note_title">Название города</string>
     <string name="text_description_title">Описание</string>
     <string name="text_armof_note_title">Герб</string>
+    <string name="popup_title_delete_all">Удалить все записи</string>
+    <string name="popup_title_add_note">Добавить запись</string>
+    <string name="text_update">Обновить</string>
+    <string name="text_plus">+</string>
 </resources>

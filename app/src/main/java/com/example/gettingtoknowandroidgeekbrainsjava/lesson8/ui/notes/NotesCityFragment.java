@@ -32,24 +32,20 @@ import java.util.List;
 public class NotesCityFragment extends Fragment {
 
     private NotesViewModel notesViewModel;
-
     private NotesCity notesCityContext;
-//    private NotesDetailViewModel notesDetailViewModel;
-
     private NotesCityAdapter notesCityAdapter;
-
     private ChangeFragment changeFragment;
-//    private boolean isLandscape;
-
     private int contextMenuItemPosition;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        notesViewModel =
+//                new ViewModelProvider(this).get(NotesViewModel.class);
+
         notesViewModel =
-                new ViewModelProvider(this).get(NotesViewModel.class);
+                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
 
         notesViewModel.fetchNotes();
 
@@ -60,7 +56,6 @@ public class NotesCityFragment extends Fragment {
                 //               Toast.makeText(requireContext(), notesCity.getName(), Toast.LENGTH_SHORT).show();
                 changeFragment.gotoFragmentNotesCityDetails(notesCity);
                 notesViewModel.setNotesCity(notesCity);
-//               notesDetailViewModel.setNotesCity(notesCity);
             }
         });
 
@@ -81,7 +76,8 @@ public class NotesCityFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_notes_city, container, false);
+        View view = inflater.inflate(R.layout.fragment_notes_city, container, false);
+        return view;
     }
 
     @Override
@@ -110,9 +106,9 @@ public class NotesCityFragment extends Fragment {
                     @Override
                     public void onChanged(Boolean isVisible) {
                         if (isVisible) {
-                            progressBar.setVisibility(View.VISIBLE);
+                            //progressBar.setVisibility(View.VISIBLE);
                         } else {
-                            progressBar.setVisibility(View.GONE);
+                            //progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -156,6 +152,7 @@ public class NotesCityFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         changeFragment = null;
+        //       mListener = null;
     }
 
     // activity создана, можно к ней обращаться. Выполним начальные действия
@@ -177,7 +174,7 @@ public class NotesCityFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 //        int position = notesCityAdapter.getMenuPosition();
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.item1_popup_open_detail:
                 changeFragment.gotoFragmentNotesCityDetails(notesCityContext);
                 notesViewModel.setNotesCity(notesCityContext);
@@ -190,7 +187,12 @@ public class NotesCityFragment extends Fragment {
                 return true;
             case R.id.item2_popup_delete:
 //                contextMenuItemPosition
+//                notesViewModel.clearNotes();
+
+//                notesViewModel.addNewNote(notesCityContext);
+
                 notesViewModel.deleteAtPosition(contextMenuItemPosition);
+
 //                Toast.makeText(getContext(), "Chosen popup deleted "+contextMenuItemPosition, Toast.LENGTH_SHORT).show();
                 return true;
         }

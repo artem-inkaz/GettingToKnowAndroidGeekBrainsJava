@@ -3,17 +3,20 @@ package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.ListNotesRepository;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class NotesViewModel extends ViewModel {
 
-    private final NotesRepository notesRepository = ListNotesRepository.INSTANCE;
+    public NotesViewModel(NotesRepository repository) {
+        super();
+        this.notesRepository = repository;
+    }
+
+    private NotesRepository notesRepository = ListNotesRepository.INSTANCE;
 
     private final MutableLiveData<List<NotesCity>> notesCityLiveData = new MutableLiveData<>();
 
@@ -59,20 +62,25 @@ public class NotesViewModel extends ViewModel {
         super.onCleared();
     }
 
-    public void addNewNote(NotesCity notesCity){
+    public void addNewNote(NotesCity notesCity) {
+
 //        progressLiveData.setValue(true);
+
         notesRepository.addNewNote();
+
         // передаем пустой список который перерисует весь список
         newNoteAddedLiveData.postValue(notesCity);
 //        progressLiveData.setValue(false);
     }
 
-    public void clearNotes(){
-        progressLiveData.setValue(true);
+    public void clearNotes() {
+//        progressLiveData.setValue(true);
         notesRepository.clearNotes();
+
         // передаем пустой список который перерисует весь список
         notesCityLiveData.postValue(new ArrayList<>());
-        progressLiveData.setValue(false);
+//        progressLiveData.setValue(false);
+
     }
 
     //--------------------------------------------------------------------------------------
@@ -93,6 +101,4 @@ public class NotesViewModel extends ViewModel {
     public void updatePosition(int contextMenuItemPosition) {
 
     }
-
-
 }

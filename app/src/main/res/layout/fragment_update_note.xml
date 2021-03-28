@@ -44,7 +44,7 @@
             app:layout_constraintHorizontal_bias="0.041"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_id_title_city"
-            tools:text="Номер Записи" />
+            tools:text="@string/text_title_id_note" />
 
         <TextView
             android:id="@+id/textView_date_title_city"
@@ -69,7 +69,7 @@
             app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_date_title_city"
-            tools:text="Дата создания" />
+            tools:text="@string/text_date_create_note" />
 
         <TextView
             android:id="@+id/textView_name_title_city"
@@ -95,7 +95,7 @@
             app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_name_title_city"
-            tools:text="Название города" />
+            tools:text="@string/text_name_note_title" />
 
         <EditText
             android:id="@+id/edit_text_description_title_city_update"
@@ -120,7 +120,7 @@
             app:layout_constraintHorizontal_bias="0.03"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit_text_description_title_city_update"
-            tools:text="Описание" />
+            tools:text="@string/text_description_title" />
 
         <TextView
             android:id="@+id/textView_avatar_title_city"
@@ -173,6 +173,17 @@
             android:scaleType="fitCenter"
             tools:layout_editor_absoluteX="207dp"
             tools:src="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/button_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="52dp"
+            android:text="@string/text_update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="@+id/guideline_end" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

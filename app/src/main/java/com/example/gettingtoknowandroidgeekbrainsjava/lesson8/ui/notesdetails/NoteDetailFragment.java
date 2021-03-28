@@ -47,20 +47,12 @@ public class NoteDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        notesDetailViewModel =
-//                new ViewModelProvider(this).get(NotesDetailViewModel.class);
-
-        notesViewModel =
-                new ViewModelProvider(this).get(NotesViewModel.class);
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_notes_city_details, container, false);
         return root;
-//        return inflater.inflate(R.layout.fragment_notes_city_details, container, false);
-
     }
 
     // activity создана, можно к ней обращаться. Выполним начальные действия
@@ -83,14 +75,6 @@ public class NoteDetailFragment extends Fragment {
         ImageView avatarNote = view.findViewById(R.id.notes_image_city);
         TextView descriptionNote = view.findViewById(R.id.textView_description_note_city);
         ImageView imageNote = view.findViewById(R.id.imageView_image_note_city);
-
-        notesViewModel.getNotesCityLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
-                    @Override
-                    public void onChanged(List<NotesCity> notesCityList) {
-//                            idNote.setText(Integer.toString(notesCityList.hashCode()));
-                    }
-                });
 
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(notesCity.getImageUrl())

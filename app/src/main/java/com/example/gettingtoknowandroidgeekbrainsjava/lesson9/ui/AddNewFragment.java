@@ -2,23 +2,23 @@ package com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
-
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModel;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModelFactory;
 import java.util.Calendar;
 
 /**
@@ -39,6 +39,10 @@ public class AddNewFragment extends Fragment {
 
     private DatePicker mDatePicker;
     private ChangeFragment changeFragment;
+
+    private NotesViewModel notesViewModel;
+
+    private NotesCity notesCityAdd;
 
     public AddNewFragment() {
         // Required empty public constructor
@@ -69,6 +73,10 @@ public class AddNewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        notesViewModel =
+                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
+
     }
 
     @Override
@@ -81,6 +89,8 @@ public class AddNewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Button buttonAdd = view.findViewById(R.id.button_add);
 
         EditText dateNote = view.findViewById(R.id.edit_text_date_note_city_add);
 
@@ -112,6 +122,12 @@ public class AddNewFragment extends Fragment {
                         .append(mDatePicker.getDayOfMonth()).append(".")
                         .append(mDatePicker.getMonth() + 1).append(".")
                         .append(mDatePicker.getYear()));
+            }
+        });
+        // int id, String name, String description, String dataCreate, String imageUrl, int avatar
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
     }

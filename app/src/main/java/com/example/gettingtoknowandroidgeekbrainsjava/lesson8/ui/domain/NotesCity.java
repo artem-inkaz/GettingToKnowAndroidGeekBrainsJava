@@ -44,4 +44,28 @@ public class NotesCity {
     public int getAvatar() {
         return avatar;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDataCreate(String dataCreate) {
+        this.dataCreate = dataCreate;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
+    }
 }

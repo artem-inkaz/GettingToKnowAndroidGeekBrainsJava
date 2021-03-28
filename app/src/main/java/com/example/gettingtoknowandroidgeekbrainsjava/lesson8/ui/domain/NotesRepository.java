@@ -9,5 +9,6 @@ public interface NotesRepository {
     void clearNotes();
 
     void addNewNote();
+
 //    List<NotesCity> getNotesDetailCity();
 }

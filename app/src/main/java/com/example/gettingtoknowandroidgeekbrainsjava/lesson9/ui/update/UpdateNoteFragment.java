@@ -7,10 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModel;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModelFactory;
 
 import java.util.Calendar;
 import java.util.List;
@@ -33,18 +38,13 @@ import java.util.Objects;
  */
 public class UpdateNoteFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String ARG_NOTES_CITY = "Param_NotesCity";
 
     private NotesCity notesCity;
     private DatePicker mDatePicker;
     private ChangeFragment changeFragment;
+
+    private NotesViewModel notesViewModel;
 
     public UpdateNoteFragment() {
         // Required empty public constructor
@@ -54,20 +54,11 @@ public class UpdateNoteFragment extends Fragment {
         this.notesCity = notesCity;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UpdateNoteFragment.
-     */
     // TODO: Rename and change types and number of parameters
-    public static UpdateNoteFragment newInstance(String param1, String param2) {
+    public static UpdateNoteFragment newInstance(NotesCity notesCity) {
         UpdateNoteFragment fragment = new UpdateNoteFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_NOTES_CITY, (Parcelable) notesCity);
         fragment.setArguments(args);
         return fragment;
     }
@@ -76,9 +67,11 @@ public class UpdateNoteFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            notesCity = getArguments().getParcelable(ARG_NOTES_CITY);
         }
+
+        notesViewModel =
+                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
     }
 
     @Override
@@ -92,20 +85,14 @@ public class UpdateNoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Button buttonUpdate = view.findViewById(R.id.button_update);
+
         EditText idNote = view.findViewById(R.id.edit_text_id_note_city_update);
         EditText nameNote = view.findViewById(R.id.edit_text_name_note_city_update);
         EditText dateNote = view.findViewById(R.id.edit_text_date_note_city_update);
         ImageView avatarNote = view.findViewById(R.id.notes_image_city_update);
         EditText descriptionNote = view.findViewById(R.id.edit_text_description_title_city_update);
         ImageView imageNote = view.findViewById(R.id.imageView_image_note_city_update);
-
-//        notesViewModel.getNotesCityLiveData()
-//                .observe(getViewLifecycleOwner(), new Observer<List<NotesCity>>() {
-//                    @Override
-//                    public void onChanged(List<NotesCity> notesCityList) {
-////                            idNote.setText(Integer.toString(notesCityList.hashCode()));
-//                    }
-//                });
 
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(notesCity.getImageUrl())
@@ -145,6 +132,13 @@ public class UpdateNoteFragment extends Fragment {
                         .append(mDatePicker.getDayOfMonth()).append(".")
                         .append(mDatePicker.getMonth() + 1).append(".")
                         .append(mDatePicker.getYear()));
+            }
+        });
+
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
