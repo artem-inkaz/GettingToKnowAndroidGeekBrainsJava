@@ -1,13 +1,16 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -17,15 +20,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesDetailsFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.NoteFavouriteFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SettingFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SignInFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesCityFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModel;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModelFactory;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.adapters.NotesCityAdapter;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.NoteDetailFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.ActionInterface;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.AddNewFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.update.UpdateNoteFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +46,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
-public class NavigationNoteBookActivity2 extends AppCompatActivity implements ChangeFragment {
+public class NavigationNoteBookActivity2 extends AppCompatActivity implements ChangeFragment, ActionInterface {
+
+    private NotesViewModel notesViewModel;
+    private NotesCityAdapter notesCityAdapter;
+    private ActionInterface mListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +64,15 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
 
         initView();
 
+        notesViewModel =
+                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
+
+        notesCityAdapter = new NotesCityAdapter(new NotesCityFragment());
+
+    }
+
+    private void activityAction() {
+//        mListener.addNoteTo();
     }
 
     private void initView() {
@@ -71,6 +96,9 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                     Toast.makeText(NavigationNoteBookActivity2.this, R.string.action_main, Toast.LENGTH_SHORT).show();
                 }
                 if (menuItem.getItemId() == R.id.action_delete_all) {
+                    notesViewModel.clearNotes();
+                    mListener.addNoteTo();
+                    activityAction();
                 }
                 return false;
             }
@@ -234,12 +262,6 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
 
         fragmentManager.popBackStack("Label", 0);
 
-//        Fragment tagFragment = fragmentManager.findFragmentByTag("TAG");
-//        Fragment tagFragment2 = fragmentManager.findFragmentById(R.id.action_add);
-//
-//        if (tagFragment instanceof FavoriteFragment) {
-//
-        //}
     }
 
     private Fragment getVisibleFragment(FragmentManager fragmentManager) {
@@ -298,6 +320,31 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
             addFragmentLandscape(new UpdateNoteFragment(notesCity), "NoteUpdateFragment");
         } else {
             addFragmentPort(new UpdateNoteFragment(notesCity), "NoteUpdateFragment");
+        }
+    }
+
+    @Override
+    public void addNoteTo() {
+//        notesViewModel.clearNotes();
+//        Toast.makeText(this, "R", Toast.LENGTH_SHORT).show();
+        // Создаём новый фрагмент с текущей позицией для вывода записи
+        NotesCityFragment notesCityFragment = NotesCityFragment.newInstance();
+        // Выполняем транзакцию по замене фрагмента
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(String.valueOf(new NotesCityFragment()));
+//        notesCityFragment.getView().findViewById()
+        if (fragment instanceof NotesCityFragment) {
+
+            Toast.makeText(this, "R.string.action_main", Toast.LENGTH_SHORT).show();
+//            fragment.getView().findViewById(R.id.recyclerView_container);
+//            RecyclerView recyclerView = fragment.getView().findViewById(R.id.recyclerView_container);
+//            RecyclerView recyclerView1 = notesCityFragment.getView().findViewById(R.id.recyclerView_container);
+//            recyclerView1.setAdapter(notesCityAdapter);
+//            notesCityAdapter.clear();
+//                        notesCityAdapter.clear();
+//                        notesCityAdapter.addItems(notesCities);
+//            notesCityAdapter.notifyDataSetChanged();
+
         }
     }
 }

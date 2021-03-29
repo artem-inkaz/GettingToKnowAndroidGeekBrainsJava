@@ -24,18 +24,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.Notes;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesDetailsFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.OnNotesSelected;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.adapters.NotesCityAdapter;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.ActionInterface;
 
 import java.util.List;
 
-public class NotesCityFragment extends Fragment {
+public class NotesCityFragment extends Fragment implements ActionInterface {
+
+    public static final String ARG_NOTES = "ARG_NOTES";
 
     private NotesViewModel notesViewModel;
     private NotesCity notesCityContext;
     private NotesCityAdapter notesCityAdapter;
     private ChangeFragment changeFragment;
     private int contextMenuItemPosition;
+    private ActionInterface mListener;
+
+    //    public static NotesDetailsFragment newInstance(int index) {
+    public static NotesCityFragment newInstance() {
+        NotesCityFragment fragment = new NotesCityFragment();
+        // передача параметров
+        Bundle args = new Bundle();
+//        args.putInt(ARG_INDEX, index);
+//        args.putParcelable(ARG_NOTES, currentNotes);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,9 +124,9 @@ public class NotesCityFragment extends Fragment {
                     @Override
                     public void onChanged(Boolean isVisible) {
                         if (isVisible) {
-                            //progressBar.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);
                         } else {
-                            //progressBar.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -129,6 +147,11 @@ public class NotesCityFragment extends Fragment {
                     public void onChanged(Integer position) {
                         notesCityAdapter.removeAtPosition(position);
                         notesCityAdapter.notifyItemRemoved(position);
+//                        if (mListener != null) {
+//                            notesViewModel.clearNotes();
+//                            //                           notesCityAdapter.clear();
+                        mListener.addNoteTo();
+//                        }
                     }
                 });
 
@@ -146,13 +169,16 @@ public class NotesCityFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         changeFragment = (ChangeFragment) getContext();
+        if (context instanceof ActionInterface) {
+            mListener = (ActionInterface) context;
+        }
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
         changeFragment = null;
-        //       mListener = null;
+         mListener = null;
+        super.onDetach();
     }
 
     // activity создана, можно к ней обращаться. Выполним начальные действия
@@ -186,9 +212,9 @@ public class NotesCityFragment extends Fragment {
                 Toast.makeText(getContext(), "Chosen popup update", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item2_popup_delete:
+//                mListener.addNoteTo();
 //                contextMenuItemPosition
 //                notesViewModel.clearNotes();
-
 //                notesViewModel.addNewNote(notesCityContext);
 
                 notesViewModel.deleteAtPosition(contextMenuItemPosition);
@@ -197,5 +223,14 @@ public class NotesCityFragment extends Fragment {
                 return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void addNoteTo() {
+        notesViewModel.clearNotes();
+//        notesCityAdapter.setItems(notesCities);
+//                       notesCityAdapter.clear();
+////                        notesCityAdapter.addItems(notesCities);
+//        notesCityAdapter.notifyDataSetChanged();
     }
 }

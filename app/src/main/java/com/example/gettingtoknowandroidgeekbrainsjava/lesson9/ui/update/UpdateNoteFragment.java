@@ -26,6 +26,9 @@ import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModel;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesViewModelFactory;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 import java.util.List;
@@ -86,7 +89,6 @@ public class UpdateNoteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button buttonUpdate = view.findViewById(R.id.button_update);
-
         EditText idNote = view.findViewById(R.id.edit_text_id_note_city_update);
         EditText nameNote = view.findViewById(R.id.edit_text_name_note_city_update);
         EditText dateNote = view.findViewById(R.id.edit_text_date_note_city_update);
@@ -105,18 +107,14 @@ public class UpdateNoteFragment extends Fragment {
         descriptionNote.setText(notesCity.getDescription());
 
         DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_update);
-
         Calendar today = Calendar.getInstance();
-
         mDatePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
                 today.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
-
                     @Override
                     public void onDateChanged(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
                         Toast.makeText(requireContext(),
                                 "onDateChanged", Toast.LENGTH_SHORT).show();
-
                         dateNote.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
                         mDatePicker.setVisibility(View.GONE);
                     }
@@ -132,15 +130,36 @@ public class UpdateNoteFragment extends Fragment {
                         .append(mDatePicker.getDayOfMonth()).append(".")
                         .append(mDatePicker.getMonth() + 1).append(".")
                         .append(mDatePicker.getYear()));
+
+                datePicker();
             }
         });
 
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
+
+        notesViewModel.getSelectedDateLiveData()
+                .observe(getViewLifecycleOwner(), new Observer<String>() {
+                    @Override
+                    public void onChanged(String message) {
+                        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+                        dateNote.setText(message);
+                    }
+                });
+    }
+
+    private void datePicker() {
+        MaterialDatePicker picker = MaterialDatePicker.Builder.datePicker().build();
+        picker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+            @Override
+            public void onPositiveButtonClick(Long selection) {
+                notesViewModel.dateSelected(selection);
+            }
+        });
+        picker.show(getChildFragmentManager(), "MaterialDatePicker");
     }
 
     @Override
