@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "913004933132",
+    "firebase_url": "https://gettingtoknowandroidjava-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gettingtoknowandroidjava",
+    "storage_bucket": "gettingtoknowandroidjava.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913004933132:android:3c8305ffa36817f1d4be29",
+        "android_client_info": {
+          "package_name": "com.example.gettingtoknowandroidgeekbrainsjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913004933132-jftkc8fe0bkdju3235i3o95g7fjc1dbd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gettingtoknowandroidgeekbrainsjava",
+            "certificate_hash": "b0bd0edb792af3b91c1d75ea77cbc50dc5ff06fa"
+          }
+        },
+        {
+          "client_id": "913004933132-mkj2btmodibfgh593t25asdmjmh14dge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDPyWaFWGBFb5QMQiN-g3jcf2ahPa9yfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913004933132-mkj2btmodibfgh593t25asdmjmh14dge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

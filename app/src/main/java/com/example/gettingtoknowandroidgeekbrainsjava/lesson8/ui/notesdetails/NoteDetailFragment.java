@@ -80,10 +80,15 @@ public class NoteDetailFragment extends Fragment {
                 .load(notesCity.getImageUrl())
                 .into(imageNote);
 
-        idNote.setText(Integer.toString(notesCity.getId()));
+        idNote.setText(notesCity.getId());
         nameNote.setText(notesCity.getName());
         dateNote.setText(notesCity.getDataCreate());
-        avatarNote.setImageResource(notesCity.getAvatar());
+//        avatarNote.set(notesCity.getAvatar());
+
+        Glide.with(Objects.requireNonNull(getContext()))
+                .load(notesCity.getAvatar())
+                .into(avatarNote);
+
         descriptionNote.setText(notesCity.getDescription());
 
         DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_detail);

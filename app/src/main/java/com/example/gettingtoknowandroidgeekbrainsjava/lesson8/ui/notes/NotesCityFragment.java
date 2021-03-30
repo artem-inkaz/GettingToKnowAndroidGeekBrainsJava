@@ -59,9 +59,6 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        notesViewModel =
-//                new ViewModelProvider(this).get(NotesViewModel.class);
-
         notesViewModel =
                 new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
 
@@ -150,7 +147,7 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
 //                        if (mListener != null) {
 //                            notesViewModel.clearNotes();
 //                            //                           notesCityAdapter.clear();
-                        mListener.addNoteTo();
+//                        mListener.addNoteTo();
 //                        }
                     }
                 });
@@ -217,7 +214,7 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
 //                notesViewModel.clearNotes();
 //                notesViewModel.addNewNote(notesCityContext);
 
-                notesViewModel.deleteAtPosition(contextMenuItemPosition);
+                notesViewModel.deleteAtPosition(contextMenuItemPosition, notesCityAdapter.getItemAtIndex(contextMenuItemPosition));
 
 //                Toast.makeText(getContext(), "Chosen popup deleted "+contextMenuItemPosition, Toast.LENGTH_SHORT).show();
                 return true;

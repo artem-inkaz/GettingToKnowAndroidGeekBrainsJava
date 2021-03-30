@@ -105,17 +105,21 @@ public class UpdateNoteFragment extends Fragment {
                 .load(notesCity.getImageUrl())
                 .into(imageNote);
 
+        Glide.with(Objects.requireNonNull(getContext()))
+                .load(notesCity.getAvatar())
+                .into(avatarNote);
+
         notesViewModel.getUpdateItemPositionLiveData().observe(getViewLifecycleOwner(), new Observer<NotesCity>() {
             @Override
             public void onChanged(NotesCity notesCity2) {
-                idNote.setText(Integer.toString(notesCity.getId()));
+                idNote.setText(notesCity.getId());
             }
         });
 //        idNote.setText(Integer.toString(notesCity.getId()));
 
         nameNote.setText(notesCity.getName());
         dateNote.setText(notesCity.getDataCreate());
-        avatarNote.setImageResource(notesCity.getAvatar());
+//        avatarNote.setImageResource(notesCity.getAvatar());
         descriptionNote.setText(notesCity.getDescription());
 
         DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_update);

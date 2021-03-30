@@ -27,7 +27,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson10.AuthFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson10.SignInOut;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesDetailsFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.HomeNoteFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.NoteFavouriteFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SettingFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SignInFragment;
@@ -46,11 +49,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
-public class NavigationNoteBookActivity2 extends AppCompatActivity implements ChangeFragment, ActionInterface {
+public class NavigationNoteBookActivity2 extends AppCompatActivity implements ChangeFragment, ActionInterface, SignInOut {
 
     private NotesViewModel notesViewModel;
     private NotesCityAdapter notesCityAdapter;
     private ActionInterface mListener;
+    private BottomNavigationView bottomNavView;
+    private  Toolbar toolbar;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +65,9 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
         readSettings();
         setTitle("Записная книжка");
         if (savedInstanceState == null) {
-            addFragmentBottom(new NotesCityFragment(), "NotesFragment");
+            addFragmentBottom(new AuthFragment(), "AuthFragment");
+        } else {
+//            addFragmentBottom(new NotesCityFragment(), "NotesFragment");
         }
 
         initView();
@@ -83,7 +91,8 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
     }
 
     private Toolbar initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         return toolbar;
     }
@@ -96,7 +105,7 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                     Toast.makeText(NavigationNoteBookActivity2.this, R.string.action_main, Toast.LENGTH_SHORT).show();
                 }
                 if (menuItem.getItemId() == R.id.action_delete_all) {
-//                    notesViewModel.clearNotes();
+                    notesViewModel.clearNotes();
 //                    mListener.addNoteTo();
 //                    activityAction();
                 }
@@ -108,7 +117,8 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
     // регистрация drawer
     private void initDrawer(Toolbar toolbar) {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        final NavigationView navigationView = findViewById(R.id.nav_view);
+//        final NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 //        navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,
@@ -119,6 +129,11 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
         // Обработка навигационного меню
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
+            if (navigateFragment(id)) {
+//                Toast.makeText(NavigationNoteBookActivity.this, "navigateFragment", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
             if (navigateFragment(id)) {
 //                Toast.makeText(NavigationNoteBookActivity.this, "navigateFragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
@@ -135,7 +150,8 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
 
     @SuppressLint("ResourceAsColor")
     private void intitBottom() {
-        final BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav);
+//        final BottomNavigationView bottomNavView = findViewById(R.id.bottom_nav);
+        bottomNavView = findViewById(R.id.bottom_nav);
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -203,24 +219,29 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
     private boolean navigateFragment(int id) {
         switch (id) {
             case R.id.action_sign_in:
-                addFragmentDrawer(new SignInFragment());
+//                addFragmentDrawer(new AuthFragment());
+                addFragmentBottom(new AuthFragment(), "AuthFragment");
                 setTitle("Войти");
                 return true;
             case R.id.action_home_note:
 //                addFragmentDrawer(new HomeNoteFragment());
-                addFragmentDrawer(new NotesCityFragment());
+                addFragmentBottom(new NotesCityFragment(), "NotesCityFragment");
+//                addFragmentDrawer(new NotesCityFragment());
                 setTitle("Главная.Список записей");
                 return true;
             case R.id.action_note_favourite:
-                addFragmentDrawer(new NoteFavouriteFragment());
+//                addFragmentDrawer(new NoteFavouriteFragment());
+                addFragmentBottom(new NoteFavouriteFragment(), "NoteFavouriteFragment");
                 setTitle("Избранные записи");
                 return true;
             case R.id.action_note_setting:
-                addFragmentDrawer(new SettingFragment());
+//                addFragmentDrawer(new SettingFragment());
+                addFragmentBottom(new SettingFragment(), "SettingFragment");
                 setTitle("Настройки приложения");
                 return true;
             case R.id.action_sign_out:
-//                addFragmentDrawer(new FavoriteFragment());
+                addFragmentBottom(new AuthFragment(), "AuthFragment");
+//                addFragmentDrawer(new AuthFragment());
                 return true;
         }
         return false;
@@ -346,5 +367,20 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
 //            notesCityAdapter.notifyDataSetChanged();
 
         }
+    }
+
+    @Override
+    public void interfaceSignIn() {
+        bottomNavView.setVisibility(View.VISIBLE);
+        toolbar.setVisibility(View.VISIBLE);
+        navigationView.setVisibility(View.VISIBLE);
+//        addFragmentBottom(new NotesCityFragment(), "NotesCityFragment");
+    }
+
+    @Override
+    public void interfaceSignOut() {
+        bottomNavView.setVisibility(View.INVISIBLE);
+        toolbar.setVisibility(View.INVISIBLE);
+        navigationView.setVisibility(View.INVISIBLE);
     }
 }

@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import java.util.ArrayList;
@@ -65,10 +67,14 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
 
         NotesCity item = items.get(position);
 
-        holder.getIdNote().setText(Integer.toString(item.getId()));
+        holder.getIdNote().setText(item.getId());
         holder.getNameNote().setText(item.getName());
         holder.getDateNote().setText(item.getDataCreate());
-        holder.getAvatarNote().setImageResource(item.getAvatar());
+//        holder.getAvatarNote().setImageResource(item.getAvatar());
+
+        Glide.with(holder.getAvatarNote())
+                .load(item.getAvatar())
+                .into(holder.getAvatarNote());
 
     }
 
@@ -95,6 +101,10 @@ public class NotesCityAdapter extends RecyclerView.Adapter<NotesCityAdapter.Note
 
     public void updatePosition(Integer position) {
         //       items.re
+    }
+
+    public NotesCity getItemAtIndex(int contextMenuItemPosition) {
+         return items.get(contextMenuItemPosition);
     }
 
     public interface OnNoteClicked {
