@@ -156,11 +156,11 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
                 });
 
         notesViewModel.getUpdateItemPositionLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                .observe(getViewLifecycleOwner(), new Observer<NotesCity>() {
                     @Override
-                    public void onChanged(Integer position) {
-                        notesCityAdapter.updatePosition(position);
-                        notesCityAdapter.notifyItemChanged(position);
+                    public void onChanged(NotesCity notesCity) {
+//                        notesCityAdapter.setItems(notesCity);
+//                        notesCityAdapter.notifyItemChanged(notesCity);
                     }
                 });
     }
@@ -207,7 +207,7 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
 //                Toast.makeText(getContext(), "Chosen popup open detail", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item1_popup_update:
-                notesViewModel.updatePosition(contextMenuItemPosition);
+                notesViewModel.updatePosition(notesCityContext);
                 changeFragment.gotoFragmentNotesCityUpdate(notesCityContext);
                 Toast.makeText(getContext(), "Chosen popup update", Toast.LENGTH_SHORT).show();
                 return true;

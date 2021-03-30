@@ -96,9 +96,9 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                     Toast.makeText(NavigationNoteBookActivity2.this, R.string.action_main, Toast.LENGTH_SHORT).show();
                 }
                 if (menuItem.getItemId() == R.id.action_delete_all) {
-                    notesViewModel.clearNotes();
-                    mListener.addNoteTo();
-                    activityAction();
+//                    notesViewModel.clearNotes();
+//                    mListener.addNoteTo();
+//                    activityAction();
                 }
                 return false;
             }

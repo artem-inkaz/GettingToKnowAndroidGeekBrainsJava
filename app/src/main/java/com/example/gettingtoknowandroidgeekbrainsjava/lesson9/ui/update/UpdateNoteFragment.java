@@ -1,5 +1,6 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.update;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -73,8 +74,8 @@ public class UpdateNoteFragment extends Fragment {
             notesCity = getArguments().getParcelable(ARG_NOTES_CITY);
         }
 
-        notesViewModel =
-                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
+//        notesViewModel =
+//                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
     }
 
     @Override
@@ -84,9 +85,13 @@ public class UpdateNoteFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_update_note, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        notesViewModel =
+                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
 
         Button buttonUpdate = view.findViewById(R.id.button_update);
         EditText idNote = view.findViewById(R.id.edit_text_id_note_city_update);
@@ -100,7 +105,14 @@ public class UpdateNoteFragment extends Fragment {
                 .load(notesCity.getImageUrl())
                 .into(imageNote);
 
-        idNote.setText(Integer.toString(notesCity.getId()));
+        notesViewModel.getUpdateItemPositionLiveData().observe(getViewLifecycleOwner(), new Observer<NotesCity>() {
+            @Override
+            public void onChanged(NotesCity notesCity2) {
+                idNote.setText(Integer.toString(notesCity.getId()));
+            }
+        });
+//        idNote.setText(Integer.toString(notesCity.getId()));
+
         nameNote.setText(notesCity.getName());
         dateNote.setText(notesCity.getDataCreate());
         avatarNote.setImageResource(notesCity.getAvatar());
@@ -136,8 +148,10 @@ public class UpdateNoteFragment extends Fragment {
         });
 
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint({"SetTextI18n", "ResourceType"})
             @Override
             public void onClick(View v) {
+                idNote.setText("20");
             }
         });
 

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.Callback;
-import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.ListNotesRepository;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesRepository;
 
@@ -37,15 +36,33 @@ public class NotesViewModel extends ViewModel {
     public LiveData<NotesCity> getNewNoteAddedLiveData() {
         return newNoteAddedLiveData;
     }
+    public void addNewNote() {
+        progressLiveData.setValue(true);
+        notesRepository.addNewNote(new Callback<NotesCity>() {
+            @Override
+            public void onResult(NotesCity value) {
+                newNoteAddedLiveData.postValue(value);
+                progressLiveData.setValue(false);
+            }
+        });
+    }
+
 
     private final MutableLiveData<Integer> removedItemPositionLiveData = new MutableLiveData<>();
     public LiveData<Integer> getRemovedItemPositionLiveData() {
         return removedItemPositionLiveData;
     }
+    public void deleteAtPosition(int contextMenuItemPosition) {
+        removedItemPositionLiveData.setValue(contextMenuItemPosition);
+    }
 
-    private final MutableLiveData<Integer> updateItemPositionLiveData = new MutableLiveData<>();
-    public LiveData<Integer> getUpdateItemPositionLiveData() {
+    private final MutableLiveData<NotesCity> updateItemPositionLiveData = new MutableLiveData<NotesCity>();
+    public LiveData<NotesCity> getUpdateItemPositionLiveData() {
         return updateItemPositionLiveData;
+    }
+    public void updatePosition(NotesCity notesCity2) {
+//        updateItemPositionLiveData.setValue(notesCity2);
+        updateItemPositionLiveData.postValue(notesCity2);
     }
 
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
@@ -73,17 +90,6 @@ public class NotesViewModel extends ViewModel {
         super.onCleared();
     }
 
-    public void addNewNote() {
-        progressLiveData.setValue(true);
-        notesRepository.addNewNote(new Callback<NotesCity>() {
-            @Override
-            public void onResult(NotesCity value) {
-                newNoteAddedLiveData.postValue(value);
-                progressLiveData.setValue(false);
-            }
-        });
-    }
-
     public void clearNotes() {
         progressLiveData.setValue(true);
 
@@ -101,17 +107,12 @@ public class NotesViewModel extends ViewModel {
 
     public void setNotesCity(NotesCity notesCity) {
         this.notesCity = notesCity;
-    }
-
-    public NotesCity getNotesCity() {
-        return notesCity;
-    }
-
-    public void deleteAtPosition(int contextMenuItemPosition) {
-        removedItemPositionLiveData.setValue(contextMenuItemPosition);
-    }
-
-    public void updatePosition(int contextMenuItemPosition) {
+//        notesCityLiveData.setValue(notesCity);
+//        notesCityLiveData.postValue((List<NotesCity>) notesCity);
 
     }
+
+//    public NotesCity getNotesCity() {
+//        return notesCity;
+//    }
 }

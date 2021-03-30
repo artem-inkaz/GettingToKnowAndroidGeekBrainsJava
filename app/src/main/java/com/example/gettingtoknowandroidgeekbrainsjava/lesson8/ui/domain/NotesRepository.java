@@ -10,4 +10,5 @@ public interface NotesRepository {
 
     void addNewNote(Callback<NotesCity> noteCallback);
 
+    void updateNote(Callback<NotesCity> noteCallback);
 }

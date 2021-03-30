@@ -1,7 +1,10 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import java.util.ArrayList;
@@ -127,6 +130,34 @@ public class ListNotesRepository implements NotesRepository {
                 "28.03.2021 г.",
                 "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
                 R.drawable.msc);
+                        noteCallback.onResult(notesCity);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void updateNote(Callback<NotesCity> noteCallback) {
+        executor.execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+                mainThreadHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        NotesCity notesCity = new NotesCity(1, "Харьков",
+                                "г. Харьков . г. на Украине. ",
+                                "28.03.2021 г.",
+                                "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
+                                R.drawable.msc);
                         noteCallback.onResult(notesCity);
                     }
                 });
