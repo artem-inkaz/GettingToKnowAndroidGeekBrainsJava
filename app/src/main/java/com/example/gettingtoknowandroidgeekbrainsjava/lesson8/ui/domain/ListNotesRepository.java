@@ -1,15 +1,36 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain;
 
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class ListNotesRepository implements NotesRepository {
 
     public static final NotesRepository INSTANCE = new ListNotesRepository();
 
+    private final Executor executor = Executors.newCachedThreadPool();
+
+    private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+
     @Override
-    public List<NotesCity> getNotesCity() {
+    public void getNotesCity(Callback<List<NotesCity>> callback) {
+
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
         ArrayList<NotesCity> data = new ArrayList();
 
         data.add(new NotesCity(1, "Москва",
@@ -56,22 +77,91 @@ public class ListNotesRepository implements NotesRepository {
                 "http://fresher.ru/images7/novosibirsk-s-nevozmozhnyx-rakursov/big/6.jpg",
                 R.drawable.sam));
 
-        return data;
+                mainThreadHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onResult(data);
+                    }
+                });
+            }
+        });
     }
 
     @Override
-    public void clearNotes() {
+    public void clearNotes(Callback<Object> voidCallback) {
 
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                mainThreadHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        voidCallback.onResult(new Object());
+                    }
+                });
+
+            }
+        });
     }
 
     @Override
-    public void addNewNote() {
+    public void addNewNote(Callback<NotesCity> noteCallback) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                mainThreadHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
 
         NotesCity notesCity = new NotesCity(1, "Харьков",
                 "г. Харьков . г. на Украине. ",
                 "28.03.2021 г.",
                 "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
                 R.drawable.msc);
+                        noteCallback.onResult(notesCity);
+                    }
+                });
+            }
+        });
+    }
 
+    @Override
+    public void updateNote(Callback<NotesCity> noteCallback) {
+        executor.execute(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+                mainThreadHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        NotesCity notesCity = new NotesCity(1, "Харьков",
+                                "г. Харьков . г. на Украине. ",
+                                "28.03.2021 г.",
+                                "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
+                                R.drawable.msc);
+                        noteCallback.onResult(notesCity);
+                    }
+                });
+            }
+        });
     }
 }

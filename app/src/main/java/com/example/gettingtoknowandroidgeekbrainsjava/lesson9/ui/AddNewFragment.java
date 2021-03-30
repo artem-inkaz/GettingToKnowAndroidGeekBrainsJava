@@ -128,6 +128,7 @@ public class AddNewFragment extends Fragment {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                notesViewModel.addNewNote();
             }
         });
     }

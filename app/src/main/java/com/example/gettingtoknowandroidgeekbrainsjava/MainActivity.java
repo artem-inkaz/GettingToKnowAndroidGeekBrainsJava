@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonLesson6 = findViewById(R.id.button_lesson_6);
         Button buttonLesson7 = findViewById(R.id.button_lesson_7);
         Button buttonLesson8 = findViewById(R.id.button_lesson_8);
-//        Button buttonLesson9 = findViewById(R.id.button_lesson_9);
+        Button buttonLesson9 = findViewById(R.id.button_lesson_9);
 //        Button buttonLesson10 = findViewById(R.id.button_lesson_10);
 //        Button buttonLesson11 = findViewById(R.id.button_lesson_11);
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLesson6.setOnClickListener(v -> launchCalculatorActivity5());
         buttonLesson7.setOnClickListener(v -> launchCalculatorActivity6());
         buttonLesson8.setOnClickListener(v -> launchCalculatorActivity7());
+        buttonLesson9.setOnClickListener(v -> launchCalculatorActivity7());
     }
 
     private void launchMainActivity1() {

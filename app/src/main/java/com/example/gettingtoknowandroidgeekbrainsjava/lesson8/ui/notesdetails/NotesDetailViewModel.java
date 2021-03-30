@@ -9,7 +9,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesDet
 
 import java.util.List;
 
-public class NotesDetailViewModel extends ViewModel implements NotesDetailRepository {
+public class NotesDetailViewModel extends ViewModel  {
 
     private final NotesDetailRepository notesDetailRepository;
 
@@ -34,16 +34,11 @@ public class NotesDetailViewModel extends ViewModel implements NotesDetailReposi
     }
 
     public void fetchValue(){
-        notesCityDetailLiveData.setValue(notesDetailRepository.getNotesDetailCity());
+//        notesCityDetailLiveData.setValue(notesDetailRepository.getNotesDetailCity());
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
-    }
-
-    @Override
-    public List<NotesCity> getNotesDetailCity() {
-        return null;
     }
 }

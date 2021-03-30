@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface NotesRepository {
 
-    List<NotesCity> getNotesCity();
+    void getNotesCity(Callback<List<NotesCity>> callback);
 
-    void clearNotes();
+    void clearNotes(Callback<Object> voidCallback);
 
-    void addNewNote();
+    void addNewNote(Callback<NotesCity> noteCallback);
 
-//    List<NotesCity> getNotesDetailCity();
+    void updateNote(Callback<NotesCity> noteCallback);
 }
