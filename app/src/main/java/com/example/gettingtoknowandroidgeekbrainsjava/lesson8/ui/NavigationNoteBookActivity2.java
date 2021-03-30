@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
@@ -28,6 +26,8 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.SignInFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain.NotesCity;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesCityFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.NoteDetailFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.AddNewFragment;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.update.UpdateNoteFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -47,6 +47,7 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
         }
 
         initView();
+
     }
 
     private void initView() {
@@ -54,7 +55,6 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
         initDrawer(toolbar);
         intitBottom();
         toolbarPress(toolbar);
-
     }
 
     private Toolbar initToolbar() {
@@ -69,6 +69,8 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.action_share) {
                     Toast.makeText(NavigationNoteBookActivity2.this, R.string.action_main, Toast.LENGTH_SHORT).show();
+                }
+                if (menuItem.getItemId() == R.id.action_delete_all) {
                 }
                 return false;
             }
@@ -121,6 +123,9 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                         setTitle("Избранные записи");
                         break;
                     case R.id.action_add:
+                        addFragmentBottom(new AddNewFragment(), "AddNewFragment");
+                        setTitle("Добавить новую запись");
+//                        notesViewModel.addNewNote();
 //                        addFragmentBottom(new MainFragment(), "MainFragment");
                         break;
                 }
@@ -279,11 +284,20 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
 
     @Override
     public void gotoFragmentNotesCityDetails(NotesCity notesCity) {
-//        addFragmentPort(new NoteDetailFragment(), "NoteDetailFragment");
         if (Constants.isLandscapeCity) {
             addFragmentLandscape(new NoteDetailFragment(notesCity), "NoteDetailFragment");
         } else {
             addFragmentPort(new NoteDetailFragment(notesCity), "NoteDetailFragment");
+        }
+    }
+
+    @Override
+    public void gotoFragmentNotesCityUpdate(NotesCity notesCity) {
+//        addFragmentPort(new NoteDetailFragment(), "NoteDetailFragment");
+        if (Constants.isLandscapeCity) {
+            addFragmentLandscape(new UpdateNoteFragment(notesCity), "NoteUpdateFragment");
+        } else {
+            addFragmentPort(new UpdateNoteFragment(notesCity), "NoteUpdateFragment");
         }
     }
 }

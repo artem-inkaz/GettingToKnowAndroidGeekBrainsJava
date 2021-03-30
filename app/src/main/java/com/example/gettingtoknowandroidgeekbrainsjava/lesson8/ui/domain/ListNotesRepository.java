@@ -58,4 +58,20 @@ public class ListNotesRepository implements NotesRepository {
 
         return data;
     }
+
+    @Override
+    public void clearNotes() {
+
+    }
+
+    @Override
+    public void addNewNote() {
+
+        NotesCity notesCity = new NotesCity(1, "Харьков",
+                "г. Харьков . г. на Украине. ",
+                "28.03.2021 г.",
+                "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
+                R.drawable.msc);
+
+    }
 }

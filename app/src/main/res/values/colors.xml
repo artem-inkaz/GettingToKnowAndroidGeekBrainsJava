@@ -11,4 +11,5 @@
     <color name="black_mode">#FF000000</color>
     <color name="bacground_bottom">#009688</color>
     <color name="background_item_recycler">#CEDDDB</color>
+    <color name="color_hint">#FF7F8786</color>
 </resources>
