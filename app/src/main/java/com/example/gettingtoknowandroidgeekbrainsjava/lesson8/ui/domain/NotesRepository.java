@@ -10,7 +10,9 @@ public interface NotesRepository {
 
     void addNewNote(Callback<NotesCity> noteCallback);
 
-    void updateNote(Callback<NotesCity> noteCallback);
+    void addNewNote2(NotesCity notesCity,Callback<NotesCity> noteCallback);
+
+    void updateNote(NotesCity notesCity,Callback<Object> objectCallback);
 
     void deleteNote(NotesCity notesCity, Callback<Object> objectCallback);
 }

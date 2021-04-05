@@ -138,7 +138,12 @@ public class ListNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void updateNote(Callback<NotesCity> noteCallback) {
+    public void addNewNote2(NotesCity notesCity, Callback<NotesCity> noteCallback) {
+
+    }
+
+    @Override
+    public void updateNote(NotesCity notesCity,Callback<Object> objectCallback) {
         executor.execute(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -158,7 +163,7 @@ public class ListNotesRepository implements NotesRepository {
                                 "28.03.2021 г.",
                                 "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg",
                                 "https://kudamoscow.ru/uploads/d530151cfc8d48ac1f12c85ed4a0aacf.jpg");
-                        noteCallback.onResult(notesCity);
+                        objectCallback.onResult(notesCity);
                     }
                 });
             }
