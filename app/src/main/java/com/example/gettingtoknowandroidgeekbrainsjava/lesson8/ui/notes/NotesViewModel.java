@@ -52,8 +52,23 @@ public class NotesViewModel extends ViewModel {
     public LiveData<Integer> getRemovedItemPositionLiveData() {
         return removedItemPositionLiveData;
     }
-    public void deleteAtPosition(int contextMenuItemPosition) {
-        removedItemPositionLiveData.setValue(contextMenuItemPosition);
+//    public void deleteAtPosition(int contextMenuItemPosition, NotesCity notesCity) {
+    public void deleteAtPosition(int contextMenuItemPosition, NotesCity notesCity) {
+//       removedItemPositionLiveData.setValue(contextMenuItemPosition);
+
+        progressLiveData.setValue(true);
+        notesRepository.deleteNote(notesCity, new Callback<Object>() {
+            @Override
+            public void onResult(Object value) {
+                progressLiveData.setValue(false);
+                removedItemPositionLiveData.postValue(contextMenuItemPosition);
+
+//                ArrayList<NotesCity> currentNotes = (ArrayList<NotesCity>) notesCityLiveData.getValue();
+//                currentNotes.remove(notesCity);
+//                notesCityLiveData.postValue(new ArrayList<>());
+                progressLiveData.setValue(false);
+            }
+        });
     }
 
     private final MutableLiveData<NotesCity> updateItemPositionLiveData = new MutableLiveData<NotesCity>();

@@ -3,16 +3,16 @@ package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain;
 import androidx.annotation.DrawableRes;
 
 public class NotesCity {
-    private int id;
+    private String id;
     private String name;
     private String description;
     private String dataCreate;
     //    private Date dataUpdate;
     private String imageUrl;
 //    private String videoUrl;
-    private int avatar;
+    private String avatar;
 
-    public NotesCity(int id, String name, String description, String dataCreate, String imageUrl, int avatar) {
+    public NotesCity(String id, String name, String description, String dataCreate, String imageUrl, String avatar) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -21,7 +21,7 @@ public class NotesCity {
         this.avatar = avatar;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -41,11 +41,11 @@ public class NotesCity {
         return imageUrl;
     }
 
-    public int getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -65,7 +65,7 @@ public class NotesCity {
         this.imageUrl = imageUrl;
     }
 
-    public void setAvatar(int avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

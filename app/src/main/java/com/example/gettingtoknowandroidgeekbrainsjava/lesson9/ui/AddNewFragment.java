@@ -124,10 +124,11 @@ public class AddNewFragment extends Fragment {
                         .append(mDatePicker.getYear()));
             }
         });
-        // int id, String name, String description, String dataCreate, String imageUrl, int avatar
+        // int id, String name, String description, String dataCreate, String imageUrl, String avatar
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 notesViewModel.addNewNote();
             }
         });
