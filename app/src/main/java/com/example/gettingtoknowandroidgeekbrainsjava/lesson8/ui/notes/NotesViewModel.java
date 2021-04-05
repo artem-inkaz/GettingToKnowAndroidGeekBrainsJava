@@ -1,5 +1,7 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes;
 
+import android.text.Editable;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -46,7 +48,6 @@ public class NotesViewModel extends ViewModel {
             }
         });
     }
-
 
     private final MutableLiveData<Integer> removedItemPositionLiveData = new MutableLiveData<>();
     public LiveData<Integer> getRemovedItemPositionLiveData() {

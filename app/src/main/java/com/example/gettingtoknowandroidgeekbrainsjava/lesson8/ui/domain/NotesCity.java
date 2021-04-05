@@ -1,8 +1,9 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.domain;
 
-import androidx.annotation.DrawableRes;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class NotesCity {
+public class NotesCity implements Parcelable {
     private String id;
     private String name;
     private String description;
@@ -19,6 +20,31 @@ public class NotesCity {
         this.dataCreate = dataCreate;
         this.imageUrl = imageUrl;
         this.avatar = avatar;
+    }
+
+    protected NotesCity(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        dataCreate = in.readString();
+        imageUrl = in.readString();
+        avatar = in.readString();
+    }
+
+    public static final Creator<NotesCity> CREATOR = new Creator<NotesCity>() {
+        @Override
+        public NotesCity createFromParcel(Parcel in) {
+            return new NotesCity(in);
+        }
+
+        @Override
+        public NotesCity[] newArray(int size) {
+            return new NotesCity[size];
+        }
+    };
+
+    public NotesCity() {
+
     }
 
     public String getId() {
@@ -67,5 +93,20 @@ public class NotesCity {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(dataCreate);
+        dest.writeString(imageUrl);
+        dest.writeString(avatar);
     }
 }

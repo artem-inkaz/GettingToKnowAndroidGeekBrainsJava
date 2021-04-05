@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ import java.util.Objects;
  */
 public class UpdateNoteFragment extends Fragment {
 
+    public static final String TAG = "UpdateNoteFragment";
     private static final String ARG_NOTES_CITY = "Param_NotesCity";
 
     private NotesCity notesCity;
@@ -49,6 +52,8 @@ public class UpdateNoteFragment extends Fragment {
     private ChangeFragment changeFragment;
 
     private NotesViewModel notesViewModel;
+    private UpdateNoteViewModel updateNoteViewModel;
+    private OnNoteSaved onNoteSaved;
 
     public UpdateNoteFragment() {
         // Required empty public constructor
@@ -74,8 +79,7 @@ public class UpdateNoteFragment extends Fragment {
             notesCity = getArguments().getParcelable(ARG_NOTES_CITY);
         }
 
-//        notesViewModel =
-//                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
+        updateNoteViewModel = new ViewModelProvider(this, new UpdateNoteViewModelFactory()).get(UpdateNoteViewModel.class);
     }
 
     @Override
@@ -89,9 +93,6 @@ public class UpdateNoteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        notesViewModel =
-                new ViewModelProvider(this, new NotesViewModelFactory()).get(NotesViewModel.class);
 
         Button buttonUpdate = view.findViewById(R.id.button_update);
         EditText idNote = view.findViewById(R.id.edit_text_id_note_city_update);
@@ -109,38 +110,31 @@ public class UpdateNoteFragment extends Fragment {
                 .load(notesCity.getAvatar())
                 .into(avatarNote);
 
-        notesViewModel.getUpdateItemPositionLiveData().observe(getViewLifecycleOwner(), new Observer<NotesCity>() {
-            @Override
-            public void onChanged(NotesCity notesCity2) {
-                idNote.setText(notesCity.getId());
-            }
-        });
-//        idNote.setText(Integer.toString(notesCity.getId()));
-
+        idNote.setText(notesCity.getId());
         nameNote.setText(notesCity.getName());
         dateNote.setText(notesCity.getDataCreate());
 //        avatarNote.setImageResource(notesCity.getAvatar());
         descriptionNote.setText(notesCity.getDescription());
 
-        DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_update);
-        Calendar today = Calendar.getInstance();
-        mDatePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-                today.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
-                    @Override
-                    public void onDateChanged(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                        Toast.makeText(requireContext(),
-                                "onDateChanged", Toast.LENGTH_SHORT).show();
-                        dateNote.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
-                        mDatePicker.setVisibility(View.GONE);
-                    }
-                });
+//        DatePicker mDatePicker = view.findViewById(R.id.datePicker_note_city_update);
+//        Calendar today = Calendar.getInstance();
+//        mDatePicker.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+//                today.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+//                    @Override
+//                    public void onDateChanged(DatePicker view, int year,
+//                                              int monthOfYear, int dayOfMonth) {
+//                        Toast.makeText(requireContext(),
+//                                "onDateChanged", Toast.LENGTH_SHORT).show();
+//                        dateNote.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
+//                        mDatePicker.setVisibility(View.GONE);
+//                    }
+//                });
 
         ImageView imageViewCalendar = view.findViewById(R.id.imageView_calendar_update);
         imageViewCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatePicker.setVisibility(View.VISIBLE);
+                //               mDatePicker.setVisibility(View.VISIBLE);
                 dateNote.setText(new StringBuilder()
                         // Месяц отсчитывается с 0, поэтому добавляем 1
                         .append(mDatePicker.getDayOfMonth()).append(".")
@@ -151,22 +145,112 @@ public class UpdateNoteFragment extends Fragment {
             }
         });
 
+        idNote.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateNoteViewModel.validateInput(s.toString());
+            }
+        });
+        nameNote.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateNoteViewModel.validateInput(s.toString());
+            }
+        });
+        descriptionNote.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateNoteViewModel.validateInput(s.toString());
+            }
+        });
+        dateNote.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateNoteViewModel.validateInput(s.toString());
+            }
+        });
+
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @SuppressLint({"SetTextI18n", "ResourceType"})
             @Override
             public void onClick(View v) {
-                idNote.setText("20");
+//                idNote.setText("20");
+                updateNoteViewModel.saveNote(
+                        idNote.getText(),
+                        nameNote.getText(),
+                        descriptionNote.getText(),
+                        dateNote.getText(),
+                        notesCity);
+
             }
         });
 
-        notesViewModel.getSelectedDateLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<String>() {
-                    @Override
-                    public void onChanged(String message) {
-                        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
-                        dateNote.setText(message);
-                    }
-                });
+//        notesViewModel.getSelectedDateLiveData()
+//                .observe(getViewLifecycleOwner(), new Observer<String>() {
+//                    @Override
+//                    public void onChanged(String message) {
+//                        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+//                        dateNote.setText(message);
+//                    }
+//                });
+
+        updateNoteViewModel.saveEnabled().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+//                buttonUpdate.setEnabled(aBoolean);
+                buttonUpdate.setEnabled(true);
+            }
+        });
+
+        updateNoteViewModel.saveSucceed().observe(getViewLifecycleOwner(), new Observer<Object>() {
+            @Override
+            public void onChanged(Object o) {
+                if (onNoteSaved != null) {
+                    onNoteSaved.onNoteSaved();
+                }
+            }
+        });
+
     }
 
     private void datePicker() {
@@ -184,11 +268,15 @@ public class UpdateNoteFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         changeFragment = (ChangeFragment) getContext();
+        if (context instanceof OnNoteSaved) {
+            onNoteSaved = (OnNoteSaved) context;
+        }
     }
 
     @Override
     public void onDetach() {
         changeFragment = null;
+        onNoteSaved = null;
         super.onDetach();
     }
 }

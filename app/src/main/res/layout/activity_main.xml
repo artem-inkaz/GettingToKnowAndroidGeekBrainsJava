@@ -114,14 +114,14 @@
             android:id="@+id/button_lesson_10"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:enabled="false"
+            android:enabled="true"
             android:text="@string/text_10" />
 
         <Button
             android:id="@+id/button_lesson_11"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:enabled="false"
+            android:enabled="true"
             android:text="@string/text_11" />
 
     </TableRow>

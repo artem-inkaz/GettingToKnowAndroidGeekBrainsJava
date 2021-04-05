@@ -29,6 +29,7 @@ import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson10.AuthFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson10.SignInOut;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson11.AddBottomSheetFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesDetailsFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.HomeNoteFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson7.ui.NoteFavouriteFragment;
@@ -43,6 +44,8 @@ import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notesdetails.No
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.ActionInterface;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.AddNewFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson9.ui.update.UpdateNoteFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -57,6 +60,21 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
     private BottomNavigationView bottomNavView;
     private  Toolbar toolbar;
     private NavigationView navigationView;
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+        // Проверим, входил ли пользователь в это приложение через Google
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account != null) {
+            addFragmentBottom(new NotesCityFragment(), "NotesFragment");
+            interfaceSignIn();
+
+        } else{
+            addFragmentBottom(new AuthFragment(), "AuthFragment");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,8 +185,9 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
                         setTitle("Избранные записи");
                         break;
                     case R.id.action_add:
-                        addFragmentBottom(new AddNewFragment(), "AddNewFragment");
+//                        addFragmentBottom(new AddNewFragment(), "AddNewFragment");
                         setTitle("Добавить новую запись");
+                        showBottomSheet();
 //                        notesViewModel.addNewNote();
 //                        addFragmentBottom(new MainFragment(), "MainFragment");
                         break;
@@ -382,5 +401,9 @@ public class NavigationNoteBookActivity2 extends AppCompatActivity implements Ch
         bottomNavView.setVisibility(View.INVISIBLE);
         toolbar.setVisibility(View.INVISIBLE);
         navigationView.setVisibility(View.INVISIBLE);
+    }
+
+    private void showBottomSheet() {
+        AddBottomSheetFragment.newInstance().show(getSupportFragmentManager(), AddBottomSheetFragment.TAG);
     }
 }

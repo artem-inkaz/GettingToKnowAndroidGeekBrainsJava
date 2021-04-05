@@ -27,6 +27,7 @@ public class FirestoreNotesRepository implements NotesRepository {
     public static final String FIELD_DATE_CREATE = "dataCreate";
     public static final String FIELD_DESCRIPTION = "description";
     public static final String FIELD_AVATAR = "avatar";
+    public static final String FIELD_IMAGE = "image";
 
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
 
@@ -102,32 +103,59 @@ public class FirestoreNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void updateNote(Callback<NotesCity> noteCallback) {
+    public void addNewNote2(NotesCity notesCity,Callback<NotesCity> noteCallback) {
+// int id, String name, String description, String dataCreate, String imageUrl, String avatar  calendar.getTime());
+//      (notesCity.getId(), notesCity.getName(),notesCity.getDescription(),notesCity.getDataCreate() ,"https://images.unsplash.com/photo-1584714268709-c3dd9c92b378", "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378");
 
-//        fireStore.collection(NOTES_COLLECTION).document("id").update()
+        HashMap<String, Object> data = new HashMap<>();
+//        data.put(FIELD_NAME, notesCity.getName());
+        data.put(FIELD_NAME, notesCity.getName());
+        data.put(FIELD_IMAGE_URL, notesCity.getImageUrl());
+        data.put(FIELD_DATE_CREATE, notesCity.getDataCreate());
+        data.put(FIELD_DESCRIPTION, notesCity.getDescription());
+        data.put(FIELD_IMAGE, notesCity.getImageUrl());
+        data.put(FIELD_AVATAR, notesCity.getAvatar());
+
+//        fireStore.collection(NOTES_COLLECTION)
+//                .document(notesCity.getId()).update(data)
 //                .addOnCompleteListener(new OnCompleteListener<Void>() {
 //                    @Override
 //                    public void onComplete(@NonNull Task<Void> task) {
-//                        List<DocumentSnapshot> documents = task.getResult().getDocuments();
-
-//                        for (DocumentSnapshot doc : documents) {
-
-//                            String name = doc.getString(FIELD_NAME);
-//                            String imageUrl = doc.getString(FIELD_IMAGE_URL);
-////                            Date date = doc.getDate(FIELD_DATE_CREATE);
-//                            String dateCreate = doc.getString(FIELD_DATE_CREATE);
-//                            String description = doc.getString(FIELD_DESCRIPTION);
-//                            String avatar = doc.getString(FIELD_AVATAR);
-//                            // int id, String name, String description, String dataCreate, String imageUrl, String avatar
-//                            NotesCity notesCity = new NotesCity(doc.getId(), name, description, dateCreate, imageUrl, avatar);
-
-//                            result.add(notesCity);
-//                        }
-
-//                        callback.onResult(result);
-
+//                        objectCallback.onResult(new Object());
 //                    }
 //                });
+
+        fireStore.collection(NOTES_COLLECTION)
+                .add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                String id = task.getResult().getId();
+                notesCity.setId(id);
+                noteCallback.onResult(notesCity);
+
+            }
+        });
+    }
+
+    @Override
+    public void updateNote(NotesCity notesCity,Callback<Object> objectCallback) {
+
+        HashMap<String, Object> data = new HashMap<>();
+        data.put(FIELD_NAME, notesCity.getName());
+        data.put(FIELD_IMAGE_URL, notesCity.getImageUrl());
+        data.put(FIELD_DATE_CREATE, notesCity.getDataCreate());
+        data.put(FIELD_DESCRIPTION, notesCity.getDescription());
+        data.put(FIELD_AVATAR, notesCity.getAvatar());
+
+        fireStore.collection(NOTES_COLLECTION)
+                .document(notesCity.getId()).update(data)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        objectCallback.onResult(new Object());
+                    }
+                });
     }
 
     @Override

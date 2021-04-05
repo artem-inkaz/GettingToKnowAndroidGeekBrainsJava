@@ -1,6 +1,7 @@
 package com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.Constants;
+import com.example.gettingtoknowandroidgeekbrainsjava.MainActivity;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.Notes;
 import com.example.gettingtoknowandroidgeekbrainsjava.lesson6.NotesDetailsFragment;
@@ -213,8 +216,8 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
 //                contextMenuItemPosition
 //                notesViewModel.clearNotes();
 //                notesViewModel.addNewNote(notesCityContext);
-
-                notesViewModel.deleteAtPosition(contextMenuItemPosition, notesCityAdapter.getItemAtIndex(contextMenuItemPosition));
+                showAlert();
+//                notesViewModel.deleteAtPosition(contextMenuItemPosition, notesCityAdapter.getItemAtIndex(contextMenuItemPosition));
 
 //                Toast.makeText(getContext(), "Chosen popup deleted "+contextMenuItemPosition, Toast.LENGTH_SHORT).show();
                 return true;
@@ -229,5 +232,35 @@ public class NotesCityFragment extends Fragment implements ActionInterface {
 //                       notesCityAdapter.clear();
 ////                        notesCityAdapter.addItems(notesCities);
 //        notesCityAdapter.notifyDataSetChanged();
+    }
+
+    private void showAlert() {
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.attention)
+                .setMessage(R.string.alert_title_delete)
+                .setIcon(R.drawable.ic_alert)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(requireContext(), R.string.ok, Toast.LENGTH_SHORT).show();
+                        notesViewModel.deleteAtPosition(contextMenuItemPosition, notesCityAdapter.getItemAtIndex(contextMenuItemPosition));
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(requireContext(), R.string.cancel, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNeutralButton(R.string.neutral, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(requireContext(), R.string.neutral, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setCancelable(true)
+                .create();
+
+        dialog.show();
     }
 }

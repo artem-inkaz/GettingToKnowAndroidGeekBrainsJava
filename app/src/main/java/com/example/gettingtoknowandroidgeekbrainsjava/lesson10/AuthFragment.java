@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.gettingtoknowandroidgeekbrainsjava.ChangeFragment;
 import com.example.gettingtoknowandroidgeekbrainsjava.R;
+import com.example.gettingtoknowandroidgeekbrainsjava.lesson8.ui.notes.NotesCityFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -151,11 +152,12 @@ public class AuthFragment extends Fragment {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            Toast.makeText(requireContext(),"Авторизация прошла успешно", Toast.LENGTH_LONG).show();
+//            Toast.makeText(requireContext(),"Авторизация прошла успешно", Toast.LENGTH_LONG).show();
             // Регистрация прошла успешно
             signInOut.interfaceSignIn();
             buttonSignIn.setEnabled(false);
             buttonSignOut.setEnabled(true);
+            addFragmentBottom(new NotesCityFragment(),"NotesCityFragment");
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure
             // reason. Please refer to the GoogleSignInStatusCodes class
@@ -205,5 +207,10 @@ public class AuthFragment extends Fragment {
 //        buttonSingOut.setEnabled(true);
     }
 
+    private void addFragmentBottom(Fragment fragment, String tag) {
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment, tag)
+                .commit();
+    }
 
 }
